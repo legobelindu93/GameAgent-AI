@@ -6,26 +6,30 @@ from .engine import State, Action, step
 from .planner import plan, legal
 from .memory import Memory
 from .imitation import Imitation
+from .theme import apply, console, sidebar as make_sidebar
+from .scenarios import initial
+import subprocess, sys
 
 def main():
     root=tk.Tk()
     root.title("GameAgent AI | Research Studio")
-    root.geometry("1050x680")
+    root.geometry("1220x780")
+    apply(root)
     root.minsize(850,520)
     profiles=load_profiles()
-    sidebar=ttk.Frame(root,padding=16)
-    sidebar.pack(side="left",fill="y")
-    ttk.Label(sidebar,text="GAMEAGENT AI",font=("Segoe UI",16,"bold")).pack(pady=12)
-    panel=ttk.Frame(root,padding=20)
+    navigation=ttk.Frame(root)
+    navigation.pack(side="left",fill="y")
+    panel=ttk.Frame(root,padding=28)
     panel.pack(side="right",fill="both",expand=True)
-    title=ttk.Label(panel,text="Select a game",font=("Segoe UI",24))
+    ttk.Label(panel,text="ESPACE DE TRAVAIL  /  SIMULATION",style="Eyebrow.TLabel").pack(anchor="w",pady=(0,8))
+    title=ttk.Label(panel,text="Sélectionner un jeu",style="Title.TLabel")
     title.pack(anchor="w")
-    info=ttk.Label(panel,wraplength=650)
+    info=ttk.Label(panel,wraplength=720,style="Muted.TLabel")
     info.pack(anchor="w",pady=8)
     tabs=ttk.Notebook(panel)
     tabs.pack(fill="both",expand=True)
     sim,vision,logs=ttk.Frame(tabs,padding=12),ttk.Frame(tabs,padding=12),ttk.Frame(tabs,padding=12)
-    for page,label in [(sim,"Simulation / AI"),(vision,"Offline vision"),(logs,"History")]:
+    for page,label in [(sim,"Simulation / IA"),(vision,"Vision hors ligne"),(logs,"Journal")]:
         tabs.add(page,text=label)
     state=State()
     selected=None
@@ -36,10 +40,20 @@ def main():
     pending=None
     style=tk.StringVar(value="balanced")
     status=tk.StringVar(value="No session")
-    ttk.Label(sim,textvariable=status,font=("Segoe UI",14)).pack(anchor="w",pady=8)
+    metrics=ttk.Frame(sim)
+    metrics.pack(fill="x",pady=(8,20))
+    values={}
+    for name in ("TOUR","VIE","ENNEMI","POTIONS"):
+        tile=ttk.Frame(metrics,style="Card.TFrame",padding=16)
+        tile.pack(side="left",fill="x",expand=True,padx=(0,8))
+        ttk.Label(tile,text=name,style="MetricCaption.TLabel").pack(anchor="w")
+        values[name]=ttk.Label(tile,text="—",style="Metric.TLabel")
+        values[name].pack(anchor="w")
+    ttk.Label(sim,textvariable=status,style="Muted.TLabel").pack(anchor="w",pady=8)
+    ttk.Label(sim,text="STRATÉGIE",style="Eyebrow.TLabel").pack(anchor="w",pady=(6,4))
     ttk.Combobox(sim,textvariable=style,values=["careful","balanced","aggressive"],state="readonly").pack(anchor="w")
-    trace=tk.Text(logs,state="disabled")
-    trace.pack(fill="both",expand=True)
+    trace=console(logs)
+    trace.configure(state="disabled")
     def log(msg):
         trace.configure(state="normal")
         trace.insert("end",msg+"\n")
@@ -52,16 +66,18 @@ def main():
             root.after_cancel(pending)
             pending=None
     def refresh():
-        status.set(f"Turn {state.turn} | HP {state.hp} | Enemy {state.enemy} | Potions {state.potions}")
+        for name,v in zip(values,(state.turn,state.hp,state.enemy,state.potions)):
+            values[name].configure(text=str(v))
+        status.set("Simulation synthétique · aucune action envoyée au jeu")
     def select(key):
         nonlocal selected,state,memory,session,imitation
         stop()
         if memory:
             memory.close()
-        selected,state,session,imitation=key,State(),uuid4().hex,Imitation()
+        selected,state,session,imitation=key,initial(key),uuid4().hex,Imitation()
         memory=Memory("data",key)
         title.configure(text=profiles[key]["name"])
-        info.configure(text="Synthetic research profile — "+", ".join(profiles[key]["targets"]))
+        info.configure(text="Profil de recherche — "+", ".join(profiles[key]["targets"]))
         trace.configure(state="normal")
         trace.delete("1.0","end")
         trace.configure(state="disabled")
@@ -103,11 +119,16 @@ def main():
             act(imitation.predict(state))
         except ValueError as exc:
             log(str(exc))
-    for label,fn in [("Plan one turn",act),("Run simulation",start),("Stop",stop),("Reset",lambda:select(selected) if selected else None),("Imitate demonstration",imitate)]:
-        ttk.Button(sim,text=label,command=fn).pack(anchor="w",pady=3)
-    ttk.Label(sim,text="Demonstrate an action:").pack(anchor="w",pady=6)
+    controls=ttk.Frame(sim)
+    controls.pack(fill="x",pady=16)
+    for label,fn in [("Un tour",act),("Lancer la simulation",start),("Arrêter",stop),("Réinitialiser",lambda:select(selected) if selected else None)]:
+        ttk.Button(controls,text=label,command=fn,style="Accent.TButton" if fn==start else "TButton").pack(side="left",padx=(0,6))
+    ttk.Label(sim,text="APPRENTISSAGE PAR DÉMONSTRATION",style="Eyebrow.TLabel").pack(anchor="w",pady=(12,8))
+    demos=ttk.Frame(sim)
+    demos.pack(fill="x")
     for a in Action:
-        ttk.Button(sim,text=a.value,command=lambda a=a:act(a,True)).pack(anchor="w")
+        ttk.Button(demos,text=a.value,command=lambda a=a:act(a,True)).pack(side="left",padx=(0,6))
+    ttk.Button(demos,text="Imiter",command=imitate).pack(side="left")
     def analyze():
         image=filedialog.askopenfilename(title="Choose screenshot")
         if not image:return
@@ -119,9 +140,12 @@ def main():
             tabs.select(logs)
         except (ImportError,ValueError) as exc:
             messagebox.showerror("Vision",str(exc))
-    ttk.Button(vision,text="Match template in saved screenshot",command=analyze).pack(anchor="w")
-    for key,p in profiles.items():
-        ttk.Button(sidebar,text=p["name"],command=lambda k=key:select(k)).pack(fill="x",pady=4)
+    ttk.Label(vision,text="Analyser une capture",style="Title.TLabel").pack(anchor="w",pady=12)
+    ttk.Label(vision,text="Comparer une image enregistrée avec un modèle visuel.",style="Muted.TLabel").pack(anchor="w",pady=8)
+    ttk.Button(vision,text="Choisir les images",command=analyze,style="Accent.TButton").pack(anchor="w")
+    nav,pick=make_sidebar(navigation,profiles,select)
+    ttk.Button(nav,text="Centre de connaissances",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.research_ui"]),style="Accent.TButton").pack(fill="x",pady=20)
+    if profiles:pick(next(iter(profiles)))
     def close():
         stop()
         if memory:memory.close()
