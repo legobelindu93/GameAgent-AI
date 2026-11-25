@@ -1,0 +1,2 @@
+# Visual refresh 0.8
+Responsive banners, Segoe UI, overview cards, grouped actions, and per-game informational categories. Existing native host, installation and knowledge center retained. Categories are not independent task controls and have not been verified exhaustively against upstream revisions. Default banners are geometric illustrations, not publisher images. Optional local game artwork supported. Windows rendering and tests not performed.

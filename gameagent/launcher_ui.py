@@ -9,9 +9,11 @@ from .project_hub import project,inspect,open_folder
 from .installations import releases,download
 from . import native,dependencies
 from .window_host import WindowHost
+from .visuals import Banner
+from .game_data import identity
 
 def main():
-    root=tk.Tk();root.title("GameAgent | Game Library");root.geometry("1280x800");root.minsize(950,600);apply(root)
+    root=tk.Tk();root.title("GameAgent | Game Library");root.geometry("1360x850");root.minsize(1050,720);apply(root)
     profiles=load_profiles()
     selected=None
     assets=[]
@@ -21,12 +23,11 @@ def main():
     nav,pick=sidebar(root,profiles,lambda k:select(k))
     panel=ttk.Frame(root,padding=28);panel.pack(fill="both",expand=True)
     ttk.Label(panel,text="BIBLIOTHÈQUE / APPLICATIONS",style="Eyebrow.TLabel").pack(anchor="w")
-    title=ttk.Label(panel,style="Title.TLabel");title.pack(anchor="w",pady=8)
-    subtitle=ttk.Label(panel,style="Muted.TLabel");subtitle.pack(anchor="w")
+    banner=Banner(panel);banner.pack(fill="x",pady=(10,8))
     status=ttk.Label(panel,style="Muted.TLabel");status.pack(anchor="w",pady=12)
     tabs=ttk.Notebook(panel);tabs.pack(fill="both",expand=True)
     home,install,details,embedded=[ttk.Frame(tabs,padding=18) for _ in range(4)]
-    for page,label in [(home,"Application"),(install,"Installation"),(details,"Diagnostic"),(embedded,"Interface intégrée")]:tabs.add(page,text=label)
+    for page,label in [(home,"Vue d’ensemble"),(install,"Installation"),(embedded,"Interface originale"),(details,"Diagnostic")]:tabs.add(page,text=label)
     log=console(details)
     host_frame=tk.Frame(embedded,bg="#10131c")
     host=WindowHost(host_frame)
@@ -59,14 +60,25 @@ def main():
         settings=native.load(selected)
         from pathlib import Path
         exe=settings.get("executable","")
-        status.configure(text=("Application configurée" if exe and Path(exe).is_file() else "Installation ou sélection de l’exécutable nécessaire"))
+        ready=bool(exe and Path(exe).is_file())
+        status.configure(text=("Application configurée" if ready else "Application à installer"))
+        status_value.configure(text="Configurée" if ready else "Non configurée")
+        launch_button.configure(state="normal" if ready else "disabled")
         path.configure(text=exe or "Aucun exécutable sélectionné")
     def select(key):
         nonlocal selected,generation,assets
         detach()
         selected=key;generation+=1;assets=[]
         meta=project(key)
-        title.configure(text=profiles[key]["name"]);subtitle.configure(text=meta["name"]+"  /  "+meta["interface"])
+        banner.show_game(key,profiles[key]["name"],meta["name"]+"  /  "+meta["interface"])
+        engine_value.configure(text=meta["name"])
+        interface_value.configure(text=meta["interface"])
+        for child in features.winfo_children():child.destroy()
+        for i,label in enumerate(identity(key)["features"]):
+            tile=ttk.Frame(features,style="Card.TFrame",padding=12)
+            tile.grid(row=i//2,column=i%2,sticky="nsew",padx=4,pady=4)
+            ttk.Label(tile,text=label,style="Card.TLabel").pack(anchor="w")
+            ttk.Label(tile,text="Dans le projet original",style="MetricCaption.TLabel").pack(anchor="w",pady=(4,0))
         listing.delete(0,"end");release_status.configure(text="Sélectionnez Rechercher les versions.")
         log.delete("1.0","end")
         refresh()
@@ -91,12 +103,28 @@ def main():
     def web():
         if not native.load(selected).get("web_url"):web_config()
         if native.load(selected).get("web_url"):subprocess.Popen([sys.executable,"-m","gameagent.native",selected])
-    ttk.Label(home,text="Interface originale",style="Title.TLabel").pack(anchor="w")
-    ttk.Label(home,text="Conservez les fonctionnalités et les paramètres du programme tiers.",style="Muted.TLabel").pack(anchor="w",pady=10)
-    path=ttk.Label(home,wraplength=700);path.pack(anchor="w",pady=10)
-    for label,fn,style in [("Ouvrir l’application",launch,"Accent.TButton"),("Sélectionner l’exécutable installé",configure,"TButton"),("Configurer WebUI",web_config,"TButton"),("Afficher WebUI locale",web,"TButton")]:
-        ttk.Button(home,text=label,command=fn,style=style).pack(anchor="w",pady=4)
-    ttk.Label(home,text="Les activités restent gérées par l’interface originale. Utilisation dans les environnements autorisés uniquement.",wraplength=700,style="Muted.TLabel").pack(anchor="w",pady=20)
+    cards=ttk.Frame(home);cards.pack(fill="x",pady=(0,14))
+    def metric(label):
+        card=ttk.Frame(cards,style="Card.TFrame",padding=13);card.pack(side="left",fill="both",expand=True,padx=(0,8))
+        ttk.Label(card,text=label,style="MetricCaption.TLabel").pack(anchor="w")
+        value=ttk.Label(card,text="—",style="Card.TLabel",font=("Segoe UI",13,"bold"))
+        value.pack(anchor="w",pady=(5,0))
+        return value
+    status_value=metric("INSTALLATION")
+    engine_value=metric("PROJET")
+    interface_value=metric("INTERFACE")
+    actions=ttk.Frame(home);actions.pack(fill="x",pady=(0,12))
+    launch_button=ttk.Button(actions,text="Ouvrir l’application",command=launch,style="Accent.TButton")
+    launch_button.pack(side="left",padx=(0,8))
+    ttk.Button(actions,text="Installer",command=lambda:tabs.select(install)).pack(side="left",padx=(0,8))
+    ttk.Button(actions,text="Configurer",command=configure).pack(side="left",padx=(0,8))
+    ttk.Button(actions,text="WebUI",command=web).pack(side="left",padx=(0,8))
+    ttk.Button(actions,text="Adresse WebUI",command=web_config).pack(side="left")
+    path=ttk.Label(home,wraplength=780,style="Muted.TLabel");path.pack(anchor="w",pady=(0,12))
+    ttk.Label(home,text="Catégories du projet original",font=("Segoe UI",14,"bold")).pack(anchor="w")
+    ttk.Label(home,text="Repères informatifs — les commandes se trouvent dans l’interface originale.",style="Muted.TLabel").pack(anchor="w",pady=(3,8))
+    features=ttk.Frame(home);features.pack(fill="x")
+    features.columnconfigure(0,weight=1);features.columnconfigure(1,weight=1)
     def async_job(fn,done):
         token=generation
         future=pool.submit(fn)

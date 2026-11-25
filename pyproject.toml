@@ -1,8 +1,8 @@
 [project]
 name = "gameagent"
-version = "0.7.0"
+version = "0.8.0"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["pillow>=10,<13"]
 
 [project.optional-dependencies]
 vision = ["opencv-python>=4.10,<5", "numpy>=1.26,<3"]

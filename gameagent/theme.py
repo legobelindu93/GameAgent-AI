@@ -11,13 +11,16 @@ GREEN="#45d6ad"
 
 def apply(root):
     root.configure(bg=BG)
-    root.option_add("*Font", "SegoeUI 10")
+    from tkinter import font
+    for name in ("TkDefaultFont","TkTextFont","TkMenuFont","TkHeadingFont"):
+        font.nametofont(name,root=root).configure(family="Segoe UI",size=11)
+    root.option_add("*Font", "{Segoe UI} 11")
     s=ttk.Style(root)
     s.theme_use("clam")
     s.configure(".",background=BG,foreground=TEXT,font=("Segoe UI",10))
     s.configure("TFrame",background=BG)
     s.configure("Card.TFrame",background=PANEL)
-    s.configure("TLabel",background=BG,foreground=TEXT)
+    s.configure("TLabel",background=BG,foreground=TEXT,font=("Segoe UI",11))
     s.configure("Card.TLabel",background=PANEL,foreground=TEXT)
     s.configure("Muted.TLabel",foreground=MUTED)
     s.configure("Eyebrow.TLabel",foreground=GREEN,font=("Segoe UI",9,"bold"))
@@ -28,10 +31,12 @@ def apply(root):
     s.map("TButton",background=[("disabled",PANEL),("active","#343e55")],foreground=[("disabled",MUTED)])
     s.configure("Accent.TButton",background=ACCENT,foreground="#ffffff")
     s.map("Accent.TButton",background=[("active","#896ef4"),("disabled",PANEL)])
-    s.configure("Nav.TButton",anchor="w",padding=(14,12),background=PANEL)
+    s.configure("Nav.TButton",anchor="w",padding=(12,11),background=PANEL)
+    s.map("Selected.Nav.TButton",background=[("active",ACCENT),("!disabled",ACCENT)])
     s.configure("Selected.Nav.TButton",anchor="w",padding=(14,12),background=ACCENT)
-    s.configure("TNotebook",background=BG,borderwidth=0)
-    s.configure("TNotebook.Tab",background=PANEL,foreground=MUTED,padding=(20,11),borderwidth=0)
+    s.configure("TNotebook",background=BG,borderwidth=0,tabmargins=(0,4,0,0),bordercolor=BG,lightcolor=BG,darkcolor=BG)
+    s.configure("TNotebook.Tab",bordercolor=BG,lightcolor=BG,darkcolor=BG)
+    s.configure("TNotebook.Tab",background=PANEL,foreground=MUTED,padding=(18,10),borderwidth=0)
     s.map("TNotebook.Tab",background=[("selected",SURFACE)],foreground=[("selected",TEXT)])
     s.configure("TEntry",fieldbackground=SURFACE,foreground=TEXT,insertcolor=TEXT,padding=8)
     s.configure("TCombobox",fieldbackground=SURFACE,foreground=TEXT,arrowcolor=TEXT,padding=7)
@@ -51,7 +56,7 @@ def console(parent):
     return text
 
 def sidebar(parent,profiles,on_select):
-    frame=ttk.Frame(parent,padding=18,style="Card.TFrame",width=245)
+    frame=ttk.Frame(parent,padding=18,style="Card.TFrame",width=255)
     frame.pack(side="left",fill="y")
     frame.pack_propagate(False)
     ttk.Label(frame,text="GAMEAGENT",style="Card.TLabel",font=("Segoe UI",19,"bold")).pack(anchor="w")
@@ -65,5 +70,5 @@ def sidebar(parent,profiles,on_select):
         b=ttk.Button(frame,text=p["name"],style="Nav.TButton",command=lambda k=key:select(k))
         b.pack(fill="x",pady=3)
         buttons[key]=b
-    ttk.Label(frame,text="LOCAL  /  SIMULATION",style="MetricCaption.TLabel").pack(side="bottom",anchor="w")
+    ttk.Label(frame,text="GAME LIBRARY  /  LOCAL",style="MetricCaption.TLabel").pack(side="bottom",anchor="w")
     return frame,select
