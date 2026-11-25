@@ -1,9 +1,10 @@
 [project]
 name = "gameagent"
-version = "0.2.0"
+version = "0.3.0"
 requires-python = ">=3.12"
 dependencies = []
 
 [project.optional-dependencies]
 vision = ["opencv-python>=4.10,<5", "numpy>=1.26,<3"]
+ocr = ["rapidocr>=3,<4", "onnxruntime>=1.20,<2"]
 learning = ["gymnasium>=1.0,<2", "stable-baselines3>=2.5,<3"]
