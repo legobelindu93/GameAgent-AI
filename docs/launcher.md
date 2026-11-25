@@ -1,0 +1,2 @@
+# Game launcher
+Main UI now prioritizes original applications. GitHub release API lists assets; explicit user selection downloads without executing, with size and optional published SHA256 verification. Installation/extraction remains upstream-specific. Register installed executables per game; native windows run separately and local web interfaces open through pywebview. No embedding of Qt/WPF windows or automatic setup. Source browser remains available. Windows verification pending.
