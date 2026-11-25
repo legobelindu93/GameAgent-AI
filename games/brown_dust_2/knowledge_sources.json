@@ -1,0 +1,14 @@
+{
+  "status": "discovery_only",
+  "sources": [],
+  "topics": [
+    "characters",
+    "skills",
+    "builds",
+    "teams",
+    "enemies",
+    "mechanics",
+    "patches",
+    "expert demonstrations"
+  ]
+}

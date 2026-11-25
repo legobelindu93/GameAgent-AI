@@ -1,0 +1,23 @@
+{
+  "status": "discovery_only",
+  "sources": [
+    {
+      "url": "https://keqingmains.com/",
+      "permission": "review before ingestion"
+    },
+    {
+      "url": "https://library.keqingmains.com/",
+      "permission": "review before ingestion"
+    }
+  ],
+  "topics": [
+    "characters",
+    "skills",
+    "builds",
+    "teams",
+    "enemies",
+    "mechanics",
+    "patches",
+    "expert demonstrations"
+  ]
+}
