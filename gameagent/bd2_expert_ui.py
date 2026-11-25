@@ -1,4 +1,5 @@
 import tkinter as tk
+import subprocess,sys
 from tkinter import ttk,messagebox
 from concurrent.futures import ThreadPoolExecutor
 from .theme import apply,console
@@ -58,6 +59,7 @@ def main():
         root.after(150,poll)
     ttk.Button(bar,text="Plan de progression F2P",command=planning,style="Accent.TButton").pack(side="left")
     button=ttk.Button(bar,text="Interroger l’IA locale",command=query);button.pack(side="left",padx=8)
+    ttk.Button(bar,text="Laboratoire expert",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.bd2_lab_ui"])).pack(side="left",padx=8)
     out=console(panel)
     root.protocol("WM_DELETE_WINDOW",lambda:(pool.shutdown(wait=False,cancel_futures=True),root.destroy()))
     root.mainloop()

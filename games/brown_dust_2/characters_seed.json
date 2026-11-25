@@ -1,0 +1,847 @@
+[
+  {
+    "kind": "character",
+    "name": "Lathel",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Justia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Scheherazade",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Gray",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Rou",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Olstein",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Sylvia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Rubia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Eclipse",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Teresse",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Liatris",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Alec",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Seir",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Celia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Anastasia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Lecliss",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Rafina",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Elise",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Helena",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Eleaneer",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Angelica",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Glacia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Ventana",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Diana",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Zenith",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Yuri",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Dalvi",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Nartas",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Granhildr",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Refithea",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Loen",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Roxy",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Eris",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Venaka",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Nebris",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Sacred Justia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Levia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Morpeah",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Michaela",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Yomi",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Yozakura",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Hikage",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Yumi",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Luvencia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Liberta",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Blade",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Wilhelmina",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Goblin Slayer",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Priestess",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "High Elf Archer",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Sword Maiden",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Olivier",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Sonya",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Tyr",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Darian",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Granadair",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Palette",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Mamonir",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Ikaruga",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Nekyndalia",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Aquila",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Kyouka Uzen",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Tenka Izumo",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Ren Yamashiro",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  },
+  {
+    "kind": "character",
+    "name": "Valze",
+    "patch": "snapshot 2026-11-25; partial index",
+    "source": "https://browndust2-db.souseha.com/en/characters",
+    "data": {
+      "verified_fields": [
+        "name"
+      ],
+      "stats": null,
+      "costumes": []
+    }
+  }
+]
