@@ -189,6 +189,7 @@ def main():
         write(str(describe(key)))
         async_job(lambda:inspect(key),lambda r:write("Révision : "+str(r["revision"])+"\nFichiers locaux : "+str(len(r["files"]))+"\nLicences : "+str(r["licenses"])))
     ttk.Button(details,text="Analyser les sources locales",command=diagnostic).pack(anchor="w")
+    ttk.Button(nav,text="Expert Brown Dust 2",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.bd2_expert_ui"])).pack(fill="x",pady=4)
     ttk.Button(nav,text="Centre de connaissances",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.research_ui"])).pack(fill="x",pady=12)
     ttk.Button(nav,text="Explorateur de sources",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.hub_ui"])).pack(fill="x")
     def close():

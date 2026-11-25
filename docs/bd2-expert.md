@@ -1,0 +1,2 @@
+# Brown Dust 2 expert
+Launch with uv run python -m gameagent.bd2_expert_ui or the main sidebar. Offline priority planning works without an LLM. Optional local Ollama: ollama pull qwen2.5:3b. Initial knowledge contains eight curated source notes, including historical guides with version warnings. Account fields are manual; no automatic capture, roster extraction, task execution, model training, or live event synchronization. Scores and durations are heuristics, not measured rewards or proven optimal strategy. Tests added but not executed here.
