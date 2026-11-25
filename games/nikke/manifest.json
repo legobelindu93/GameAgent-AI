@@ -1,0 +1,13 @@
+{
+  "id": "nikke",
+  "name": "NIKKE",
+  "version": "0.1.0",
+  "status": "profile_only",
+  "targets": [
+    "UI perception",
+    "activity planning"
+  ],
+  "modes": [
+    "simulation"
+  ]
+}

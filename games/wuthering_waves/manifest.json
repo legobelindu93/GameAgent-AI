@@ -1,0 +1,13 @@
+{
+  "id": "wuthering_waves",
+  "name": "Wuthering Waves",
+  "version": "0.1.0",
+  "status": "profile_only",
+  "targets": [
+    "combat analysis",
+    "animation recognition"
+  ],
+  "modes": [
+    "simulation"
+  ]
+}

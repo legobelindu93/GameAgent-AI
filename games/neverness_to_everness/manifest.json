@@ -1,0 +1,12 @@
+{
+  "id": "neverness_to_everness",
+  "name": "Neverness to Everness",
+  "version": "0.1.0",
+  "status": "profile_only",
+  "targets": [
+    "urban navigation simulation"
+  ],
+  "modes": [
+    "simulation"
+  ]
+}

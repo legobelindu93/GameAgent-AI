@@ -1,0 +1,53 @@
+{
+  "status": "candidates_only_not_audited_or_imported",
+  "sources": [
+    {
+      "url": "https://github.com/MaaXYZ/MaaFramework",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/ok-oldking/ok-script",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/LmeSzinc/AzurLaneAutoScript",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/megumiss/NIKKEAutoScript",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/sunyink/MFABD2",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/babalae/better-genshin-impact",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/ok-oldking/ok-wuthering-waves",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/BnanZ0/ok-nte",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/LmeSzinc/StarRailCopilot",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/openai/Video-Pre-Training",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/Farama-Foundation/Gymnasium",
+      "status": "pending_review"
+    },
+    {
+      "url": "https://github.com/DLR-RM/stable-baselines3",
+      "status": "pending_review"
+    }
+  ]
+}

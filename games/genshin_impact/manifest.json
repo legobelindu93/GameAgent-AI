@@ -1,0 +1,13 @@
+{
+  "id": "genshin_impact",
+  "name": "Genshin Impact",
+  "version": "0.1.0",
+  "status": "profile_only",
+  "targets": [
+    "navigation simulation",
+    "combat analysis"
+  ],
+  "modes": [
+    "simulation"
+  ]
+}

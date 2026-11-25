@@ -1,0 +1,13 @@
+{
+  "id": "brown_dust_2",
+  "name": "Brown Dust 2",
+  "version": "0.1.0",
+  "status": "profile_only",
+  "targets": [
+    "tactical simulation",
+    "team evaluation"
+  ],
+  "modes": [
+    "simulation"
+  ]
+}

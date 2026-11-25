@@ -1,0 +1,12 @@
+{
+  "id": "honkai_star_rail",
+  "name": "Honkai Star Rail",
+  "version": "0.1.0",
+  "status": "profile_only",
+  "targets": [
+    "turn-based strategy"
+  ],
+  "modes": [
+    "simulation"
+  ]
+}

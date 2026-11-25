@@ -1,0 +1,2 @@
+# Architecture
+The initial workbench is deliberately dependency-free. Each game owns a manifest; no game-specific models or scripts are bundled yet. The shared simulator is deterministic and explains its decisions. Future adapters should implement typed observations and actions, with a simulation-only execution boundary by default. Upstream sources require pinned revisions, license review, and security review before import. Native GPU and Windows capture are unvalidated. A future Tauri launcher may replace Tkinter after the interface contract stabilizes.
