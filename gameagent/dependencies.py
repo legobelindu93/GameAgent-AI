@@ -6,7 +6,7 @@ from .project_hub import SOURCE,BASE
 from .profiles import load_profiles
 
 PYTHON_GAMES={"nikke","brown_dust_2","wuthering_waves","neverness_to_everness","honkai_star_rail"}
-RUNTIMES=["Microsoft.DotNet.DesktopRuntime.8","Microsoft.VCRedist.2015+.x64"]
+RUNTIMES=["Microsoft.DotNet.DesktopRuntime.10","Microsoft.VCRedist.2015+.x64"]
 
 def run(args,cwd=None):
     p=subprocess.run(args,cwd=cwd,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,errors="replace",timeout=1800)
@@ -14,7 +14,7 @@ def run(args,cwd=None):
     return p.stdout[-6000:]
 
 def install_runtime(game):
-    if game!="genshin_impact":raise ValueError("Runtime recipe only validated against BetterGI packaging")
+    if game not in {"genshin_impact","brown_dust_2"}:raise ValueError("No .NET runtime recipe")
     winget=shutil.which("winget")
     if not winget:raise ValueError("winget is required")
     return "\n".join(run([winget,"install","--id",r,"--exact","--accept-source-agreements","--accept-package-agreements"]) for r in RUNTIMES)

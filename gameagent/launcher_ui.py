@@ -11,6 +11,8 @@ from . import native,dependencies
 from .window_host import WindowHost
 from .visuals import Banner
 from .game_data import identity
+from .bridges import describe,start_interface
+from .task_catalog import inventory as task_inventory
 
 def main():
     root=tk.Tk();root.title("GameAgent | Game Library");root.geometry("1360x850");root.minsize(1050,720);apply(root)
@@ -60,7 +62,8 @@ def main():
         settings=native.load(selected)
         from pathlib import Path
         exe=settings.get("executable","")
-        ready=bool(exe and Path(exe).is_file())
+        info=describe(selected)
+        ready=bool(exe and Path(exe).is_file()) or (info["entry_available"] and info["environment_available"])
         status.configure(text=("Application configurée" if ready else "Application à installer"))
         status_value.configure(text="Configurée" if ready else "Non configurée")
         launch_button.configure(state="normal" if ready else "disabled")
@@ -98,7 +101,7 @@ def main():
         key=selected
         if key in processes and processes[key].poll() is None:
             messagebox.showinfo("Application","Une instance lancée par GameAgent est déjà ouverte.");return
-        try:processes[key]=native.launch(key);write("Application ouverte : "+key)
+        try:processes[key]=start_interface(key);write("Application ouverte : "+key)
         except Exception as exc:messagebox.showerror("Application",str(exc))
     def web():
         if not native.load(selected).get("web_url"):web_config()
@@ -160,8 +163,8 @@ def main():
     ttk.Button(install,text="Toutes les versions GitHub",command=lambda:webbrowser.open(project(selected)["releases"])).pack(anchor="w",pady=4)
     def provision():
         key=selected
-        if key=="genshin_impact":
-            if not messagebox.askyesno("Dépendances","Installer .NET Desktop 8 et VC++ x64 via winget ?"):return
+        if key in {"genshin_impact","brown_dust_2"}:
+            if not messagebox.askyesno("Dépendances","Installer .NET Desktop 10 et VC++ x64 via winget ?"):return
             fn=lambda:dependencies.install_runtime(key)
         else:
             version=simpledialog.askstring("Python","Version Python requise par le dépôt (consultez sa documentation)",initialvalue="3.12")
@@ -172,9 +175,18 @@ def main():
         async_job(fn,lambda result:(release_status.configure(text="Commande terminée"),write(result)))
     ttk.Button(install,text="Installer les dépendances",command=provision).pack(anchor="w",pady=4)
     ttk.Label(install,text="Après téléchargement, suivez les instructions du projet pour installer ou extraire son application, puis sélectionnez son exécutable dans Application.",wraplength=750,style="Muted.TLabel").pack(anchor="w",pady=10)
+    def show_inventory():
+        key=selected
+        def display(rows):
+            write("Inventaire des composants originaux : "+str(len(rows)))
+            for row in rows:write(row["name"]+" | "+row["source"]+" | "+row["kind"])
+            tabs.select(details)
+        async_job(lambda:task_inventory(key),display)
+    ttk.Button(home,text="Inventorier les composants réels",command=show_inventory).pack(anchor="w",pady=8)
     def diagnostic():
         key=selected
         write(str(dependencies.diagnostic(key)))
+        write(str(describe(key)))
         async_job(lambda:inspect(key),lambda r:write("Révision : "+str(r["revision"])+"\nFichiers locaux : "+str(len(r["files"]))+"\nLicences : "+str(r["licenses"])))
     ttk.Button(details,text="Analyser les sources locales",command=diagnostic).pack(anchor="w")
     ttk.Button(nav,text="Centre de connaissances",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.research_ui"])).pack(fill="x",pady=12)
