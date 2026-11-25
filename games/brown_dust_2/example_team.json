@@ -1,0 +1,22 @@
+{
+  "sp": 5,
+  "slots": 2,
+  "skills": [
+    {
+      "character": "Example A",
+      "costume": "Synthetic multi-hit",
+      "attack": 100,
+      "multiplier": 0.5,
+      "hits": 4,
+      "sp": 2
+    },
+    {
+      "character": "Example B",
+      "costume": "Synthetic finisher",
+      "attack": 200,
+      "multiplier": 2,
+      "hits": 1,
+      "sp": 3
+    }
+  ]
+}
