@@ -1,0 +1,2 @@
+# Project Hub
+The main window now displays the actual local upstream source trees, documentation and license files for each game. It opens original project web pages, not third-party executable files. Original frontends are not embedded or deployed; code is not copied or executed. Simulation remains available separately. Source folders must have been checked out locally. No new dependency. Local testing pending.

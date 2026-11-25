@@ -1,0 +1,7 @@
+{
+  "name": "BetterGI",
+  "repository": "https://github.com/babalae/better-genshin-impact",
+  "documentation": "https://github.com/babalae/better-genshin-impact/blob/main/README.md",
+  "releases": "https://github.com/babalae/better-genshin-impact/releases",
+  "interface": "C# / WPF"
+}
