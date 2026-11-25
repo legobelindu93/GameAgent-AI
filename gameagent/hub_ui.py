@@ -1,10 +1,11 @@
 import tkinter as tk
-from tkinter import ttk,messagebox
+from tkinter import ttk,messagebox,filedialog,simpledialog
 from concurrent.futures import ThreadPoolExecutor
 import webbrowser, subprocess,sys
 from .profiles import load_profiles
 from .theme import apply,sidebar,console
 from .project_hub import project,inspect,read_source,open_folder
+from . import native
 
 def main():
     root=tk.Tk()
@@ -29,6 +30,32 @@ def main():
         try:open_folder(selected)
         except Exception as exc:messagebox.showerror("Sources",str(exc))
     ttk.Button(buttons,text="Dossier local",command=folder,style="Accent.TButton").pack(side="left")
+    nativebar=ttk.Frame(panel,padding=(0,8));nativebar.pack(fill="x")
+    native_status=ttk.Label(panel,style="Muted.TLabel");native_status.pack(anchor="w")
+    def configure_native():
+        if not selected:return
+        old=native.load(selected)
+        exe=filedialog.askopenfilename(title="Interface originale installée",filetypes=[("Executable Windows","*.exe")])
+        if not exe:return
+        url=simpledialog.askstring("WebUI facultative","Adresse locale HTTP avec port (laisser vide pour une application native)",initialvalue=old.get("web_url",""))
+        if url is None:return
+        try:
+            native.save(selected,exe,url)
+            native_status.configure(text="Interface originale configurée")
+        except Exception as exc:messagebox.showerror("Configuration",str(exc))
+    def launch_native():
+        if not selected:return
+        if not messagebox.askyesno("Application tierce","Ouvrir le programme tiers sélectionné ? Utilisez-le uniquement lorsque le jeu autorise cette automatisation."):return
+        try:native.launch(selected)
+        except Exception as exc:messagebox.showerror("Interface",str(exc))
+    def open_web():
+        if not selected:return
+        try:
+            if not native.load(selected).get("web_url"):raise ValueError("Configurez d'abord l'adresse de la WebUI")
+            subprocess.Popen([sys.executable,"-m","gameagent.native",selected])
+        except Exception as exc:messagebox.showerror("WebUI",str(exc))
+    for label,fn in [("Configurer interface",configure_native),("Ouvrir interface originale",launch_native),("Afficher WebUI",open_web)]:
+        ttk.Button(nativebar,text=label,command=fn,style="Accent.TButton" if fn==launch_native else "TButton").pack(side="left",padx=(0,6))
     status=ttk.Label(panel,style="Muted.TLabel");status.pack(anchor="w",pady=10)
     search=tk.StringVar()
     ttk.Entry(panel,textvariable=search).pack(fill="x",pady=(0,8))
@@ -57,7 +84,8 @@ def main():
         selected=game;generation+=1;token=generation
         meta=project(game)
         title.configure(text=profiles[game]["name"])
-        subtitle.configure(text=meta["name"]+"  /  "+meta["interface"]+"  •  Interface tierce non intégrée")
+        subtitle.configure(text=meta["name"]+"  /  "+meta["interface"])
+        native_status.configure(text="Interface configurée" if native.load(game).get("executable") else "Interface originale : installation et configuration requises")
         status.configure(text="Lecture des sources locales…")
         current=[];search.set("");show("Chargement…")
         future=pool.submit(inspect,game)
