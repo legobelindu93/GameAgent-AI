@@ -1,12 +1,20 @@
-# GameAgent AI
+# GameAgent AI 0.2.0
+Windows-first research studio with six isolated game profiles. All combat currently uses a synthetic simulator, not actual game mechanics.
 
-Local modular game-agent research workbench. Six independent game profiles, simulation and decision traces. No live game inputs or anti-cheat bypass.
-
-## Start
-
+## Run
 ```powershell
+uv sync
 uv run python -m gameagent
 uv run python -m unittest discover -s tests
 ```
-
-Initial prototype uses Python 3.12 and Tkinter. Game-specific models are not yet trained. See sources.json for upstream audit candidates.
+Optional offline image recognition:
+```powershell
+uv sync --extra vision
+uv run python -m gameagent
+```
+Optional synthetic PPO training:
+```powershell
+uv sync --extra learning
+uv run python -m gameagent.train --steps 10000
+```
+The launcher supports finite-horizon planning, three scoring styles, manual simulated demonstrations, nearest-neighbor imitation, per-profile SQLite history, automatic simulation and stop. No trained commercial-game model or live game inputs. See docs/upstream-review.md for preliminary source review.
