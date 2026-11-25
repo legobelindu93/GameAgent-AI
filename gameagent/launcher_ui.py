@@ -7,7 +7,8 @@ from .profiles import load_profiles
 from .theme import apply,sidebar,console
 from .project_hub import project,inspect,open_folder
 from .installations import releases,download
-from . import native
+from . import native,dependencies
+from .window_host import WindowHost
 
 def main():
     root=tk.Tk();root.title("GameAgent | Game Library");root.geometry("1280x800");root.minsize(950,600);apply(root)
@@ -24,9 +25,34 @@ def main():
     subtitle=ttk.Label(panel,style="Muted.TLabel");subtitle.pack(anchor="w")
     status=ttk.Label(panel,style="Muted.TLabel");status.pack(anchor="w",pady=12)
     tabs=ttk.Notebook(panel);tabs.pack(fill="both",expand=True)
-    home,install,details=[ttk.Frame(tabs,padding=18) for _ in range(3)]
-    for page,label in [(home,"Application"),(install,"Installation"),(details,"Diagnostic")]:tabs.add(page,text=label)
+    home,install,details,embedded=[ttk.Frame(tabs,padding=18) for _ in range(4)]
+    for page,label in [(home,"Application"),(install,"Installation"),(details,"Diagnostic"),(embedded,"Interface intégrée")]:tabs.add(page,text=label)
     log=console(details)
+    host_frame=tk.Frame(embedded,bg="#10131c")
+    host=WindowHost(host_frame)
+    host_status=ttk.Label(embedded,text="Ouvrez une application, puis sélectionnez sa fenêtre.")
+    host_status.pack(anchor="w",pady=4)
+    host_controls=ttk.Frame(embedded);host_controls.pack(fill="x")
+    host_frame.pack(fill="both",expand=True,pady=8)
+    def detach():
+        try:host.detach();host_status.configure(text="Fenêtre détachée")
+        except Exception as exc:messagebox.showerror("Fenêtre",str(exc))
+    def attach():
+        process=processes.get(selected)
+        if process is None or process.poll() is not None:
+            messagebox.showinfo("Interface","Lancez d’abord l’application depuis ce panel.");return
+        try:
+            windows=host.candidates(process.pid)
+            if not windows:raise ValueError("Aucune fenêtre détectée pour ce processus. Les lanceurs qui créent un processus enfant restent en mode externe.")
+            if len(windows)>1:
+                choice=simpledialog.askinteger("Fenêtre","\n".join(f"{i+1}. {title}" for i,(_,title) in enumerate(windows)),minvalue=1,maxvalue=len(windows))
+                if choice is None:return
+            else:choice=1
+            host.attach(windows[choice-1][0],process.pid)
+            host_status.configure(text=windows[choice-1][1]+" — interface native")
+        except Exception as exc:messagebox.showerror("Embarquement",str(exc))
+    ttk.Button(host_controls,text="Embarquer la fenêtre",command=attach,style="Accent.TButton").pack(side="left")
+    ttk.Button(host_controls,text="Détacher",command=detach).pack(side="left",padx=8)
     def write(text):
         log.insert("end",text+"\n");log.see("end")
     def refresh():
@@ -37,6 +63,7 @@ def main():
         path.configure(text=exe or "Aucun exécutable sélectionné")
     def select(key):
         nonlocal selected,generation,assets
+        detach()
         selected=key;generation+=1;assets=[]
         meta=project(key)
         title.configure(text=profiles[key]["name"]);subtitle.configure(text=meta["name"]+"  /  "+meta["interface"])
@@ -103,14 +130,31 @@ def main():
     ttk.Button(install,text="Télécharger le fichier sélectionné",command=fetch).pack(anchor="w",pady=8)
     ttk.Button(install,text="Instructions officielles",command=lambda:webbrowser.open(project(selected)["documentation"])).pack(anchor="w")
     ttk.Button(install,text="Toutes les versions GitHub",command=lambda:webbrowser.open(project(selected)["releases"])).pack(anchor="w",pady=4)
+    def provision():
+        key=selected
+        if key=="genshin_impact":
+            if not messagebox.askyesno("Dépendances","Installer .NET Desktop 8 et VC++ x64 via winget ?"):return
+            fn=lambda:dependencies.install_runtime(key)
+        else:
+            version=simpledialog.askstring("Python","Version Python requise par le dépôt (consultez sa documentation)",initialvalue="3.12")
+            if not version:return
+            if not messagebox.askyesno("Dépendances","Installer les requirements.txt du dépôt local dans un environnement isolé ? Vérifiez les sources avant de continuer."):return
+            fn=lambda:dependencies.install_python(key,version)
+        release_status.configure(text="Installation des dépendances…")
+        async_job(fn,lambda result:(release_status.configure(text="Commande terminée"),write(result)))
+    ttk.Button(install,text="Installer les dépendances",command=provision).pack(anchor="w",pady=4)
     ttk.Label(install,text="Après téléchargement, suivez les instructions du projet pour installer ou extraire son application, puis sélectionnez son exécutable dans Application.",wraplength=750,style="Muted.TLabel").pack(anchor="w",pady=10)
     def diagnostic():
         key=selected
+        write(str(dependencies.diagnostic(key)))
         async_job(lambda:inspect(key),lambda r:write("Révision : "+str(r["revision"])+"\nFichiers locaux : "+str(len(r["files"]))+"\nLicences : "+str(r["licenses"])))
     ttk.Button(details,text="Analyser les sources locales",command=diagnostic).pack(anchor="w")
     ttk.Button(nav,text="Centre de connaissances",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.research_ui"])).pack(fill="x",pady=12)
     ttk.Button(nav,text="Explorateur de sources",command=lambda:subprocess.Popen([sys.executable,"-m","gameagent.hub_ui"])).pack(fill="x")
     def close():
+        try:host.detach()
+        except Exception as exc:
+            messagebox.showerror("Interface",str(exc));return
         pool.shutdown(wait=False,cancel_futures=True);root.destroy()
     root.protocol("WM_DELETE_WINDOW",close)
     if profiles:pick(next(iter(profiles)))
