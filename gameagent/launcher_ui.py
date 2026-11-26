@@ -31,7 +31,7 @@ def main():
     home,install,details,embedded=[ttk.Frame(tabs,padding=18) for _ in range(4)]
     for page,label in [(home,"Vue d’ensemble"),(install,"Installation"),(embedded,"Interface originale"),(details,"Diagnostic")]:tabs.add(page,text=label)
     log=console(details)
-    host_frame=tk.Frame(embedded,bg="#10131c")
+    host_frame=tk.Frame(embedded,bg="#0a0b0e")
     host=WindowHost(host_frame)
     host_status=ttk.Label(embedded,text="Ouvrez une application, puis sélectionnez sa fenêtre.")
     host_status.pack(anchor="w",pady=4)
@@ -157,7 +157,7 @@ def main():
         async_job(lambda:download(key,asset),done)
     ttk.Button(install,text="Rechercher les versions",command=search,style="Accent.TButton").pack(anchor="w")
     release_status=ttk.Label(install,wraplength=750,style="Muted.TLabel");release_status.pack(anchor="w",pady=12)
-    listing=tk.Listbox(install,bg="#191e2b",fg="#eef2ff",selectbackground="#7658e8",height=8);listing.pack(fill="x")
+    listing=tk.Listbox(install,bg="#15171d",fg="#f5f5f7",selectbackground="#647e39",height=8);listing.pack(fill="x")
     ttk.Button(install,text="Télécharger le fichier sélectionné",command=fetch).pack(anchor="w",pady=8)
     ttk.Button(install,text="Instructions officielles",command=lambda:webbrowser.open(project(selected)["documentation"])).pack(anchor="w")
     ttk.Button(install,text="Toutes les versions GitHub",command=lambda:webbrowser.open(project(selected)["releases"])).pack(anchor="w",pady=4)
@@ -199,7 +199,9 @@ def main():
             messagebox.showerror("Interface",str(exc));return
         pool.shutdown(wait=False,cancel_futures=True);root.destroy()
     root.protocol("WM_DELETE_WINDOW",close)
-    if profiles:pick(next(iter(profiles)))
+    if profiles:
+        requested=sys.argv[sys.argv.index("--game")+1] if "--game" in sys.argv and sys.argv.index("--game")+1<len(sys.argv) else None
+        pick(requested if requested in profiles else next(iter(profiles)))
     root.mainloop()
 
 if __name__=="__main__":main()

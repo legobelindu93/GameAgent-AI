@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 
-BG="#10131c"
-PANEL="#191e2b"
-SURFACE="#22293a"
-TEXT="#eef2ff"
-MUTED="#a0abc3"
-ACCENT="#7658e8"
-GREEN="#45d6ad"
+BG="#0a0b0e"
+PANEL="#15171d"
+SURFACE="#1b1e25"
+TEXT="#f5f5f7"
+MUTED="#969ca8"
+ACCENT="#c5f36b"
+GREEN="#64dbaf"
 
 def apply(root):
     root.configure(bg=BG)
@@ -28,12 +28,12 @@ def apply(root):
     s.configure("Metric.TLabel",background=PANEL,foreground=TEXT,font=("Segoe UI",24,"bold"))
     s.configure("MetricCaption.TLabel",background=PANEL,foreground=MUTED,font=("Segoe UI",10))
     s.configure("TButton",background=SURFACE,foreground=TEXT,borderwidth=0,padding=(14,10))
-    s.map("TButton",background=[("disabled",PANEL),("active","#343e55")],foreground=[("disabled",MUTED)])
-    s.configure("Accent.TButton",background=ACCENT,foreground="#ffffff")
-    s.map("Accent.TButton",background=[("active","#896ef4"),("disabled",PANEL)])
+    s.map("TButton",background=[("disabled",PANEL),("active","#292e35")],foreground=[("disabled",MUTED)])
+    s.configure("Accent.TButton",background=ACCENT,foreground="#141a0d")
+    s.map("Accent.TButton",background=[("active","#dcff99"),("disabled",PANEL)])
     s.configure("Nav.TButton",anchor="w",padding=(12,11),background=PANEL)
     s.map("Selected.Nav.TButton",background=[("active",ACCENT),("!disabled",ACCENT)])
-    s.configure("Selected.Nav.TButton",anchor="w",padding=(14,12),background=ACCENT)
+    s.configure("Selected.Nav.TButton",anchor="w",padding=(14,12),background=ACCENT,foreground="#141a0d")
     s.configure("TNotebook",background=BG,borderwidth=0,tabmargins=(0,4,0,0),bordercolor=BG,lightcolor=BG,darkcolor=BG)
     s.configure("TNotebook.Tab",bordercolor=BG,lightcolor=BG,darkcolor=BG)
     s.configure("TNotebook.Tab",background=PANEL,foreground=MUTED,padding=(18,10),borderwidth=0)
@@ -46,6 +46,7 @@ def apply(root):
 
 def console(parent):
     frame=ttk.Frame(parent,style="Card.TFrame")
+    ttk.Label(frame,text="RÉSULTATS  /  JOURNAL LOCAL",style="MetricCaption.TLabel",padding=(14,8)).pack(side="top",anchor="w")
     text=tk.Text(frame,bg=PANEL,fg=TEXT,insertbackground=TEXT,selectbackground=ACCENT,
                  relief="flat",borderwidth=0,padx=16,pady=16,font=("Consolas",10),wrap="word")
     bar=ttk.Scrollbar(frame,command=text.yview)
