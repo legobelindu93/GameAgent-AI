@@ -168,3 +168,7 @@ Install the optional modern library with `uv sync --extra modern-ui --extra nati
 ### Qt workbenches (v0.14.0)
 
 Research Factory (19 actions), Knowledge Center (3), F2P Expert (3), and Tactical Lab (7) now open in modern Qt windows with shared artwork, grouped commands, split results, and background processing. Classic modules remain available. Native hosting, source explorer and simulation still use the original Tk panels.
+
+### Qt console, sources and simulation (v0.15.0)
+
+The remaining three workspaces have Qt implementations. The console uses the existing PID-scoped Win32 host through a native QWidget adapter. Embedding remains experimental and requires manual Windows validation; the classic launcher remains available. The source explorer is read-only and requires an explicit refresh; the simulation remains synthetic. All legacy module entry points are preserved.
