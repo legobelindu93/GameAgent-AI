@@ -11,6 +11,8 @@ from .account_import import import_account
 from .cloud_study import video_study,web_dossier
 from .pack_review import benchmark
 from .patch_watch import check
+from .factory import batch,offline_advice,build_bundle
+from .pack_review import review
 import webbrowser
 
 def main():
@@ -104,7 +106,32 @@ def main():
         g=game.get();job(lambda:check(g))
     def bench():
         g=game.get();job(lambda:benchmark(g))
-    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account),("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Vérifier annonces",patch_check),("Benchmark local",bench),("Ouvrir une source",open_source)]):
+    def offline():
+        g=game.get();q=simpledialog.askstring("Consultation hors ligne","Question")
+        if q:job(lambda:offline_advice(g,q))
+    def batch_web():
+        g=game.get()
+        if messagebox.askyesno("Recherche ciblée","Autoriser une recherche IA sur le sujet le moins couvert ? Une requête distante, frais possibles."):
+            job(lambda:batch(g,web=True,authorized=True))
+    def bundle():
+        target=filedialog.askdirectory()
+        if target:job(lambda:build_bundle(target))
+    def review_pack():
+        g=game.get();p=filedialog.askopenfilename(filetypes=[("JSON","*.json")])
+        if not p:return
+        try:
+            obj=verify(load_json(p),g);show(obj)
+            ids=simpledialog.askstring("Validation manuelle","Identifiants des fiches vérifiées, séparés par des espaces")
+            if not ids:return
+            version=simpledialog.askstring("Version","Nouvelle version (ex. 1.0.1)")
+            if not version:return
+            target=filedialog.asksaveasfilename(defaultextension=".json")
+            if target and messagebox.askyesno("Validation","Confirmer que tu as vérifié chaque fiche auprès de sa source ?"):
+                def run():
+                    pack=review(obj,ids.split(),version);atomic(target,pack);return {"output":target,"approved":sum(r["review"]=="approved" for r in pack["records"])}
+                job(run)
+        except Exception as exc:show({"error":str(exc)})
+    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account),("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Vérifier annonces",patch_check),("Benchmark local",bench),("Ouvrir une source",open_source),("Conseil hors ligne",offline),("Recherche autonome ciblée",batch_web),("Exporter les six packs",bundle),("Valider un pack",review_pack)]):
         ttk.Button(bar,text=name,command=fn).grid(row=i//3,column=i%3,sticky="ew",padx=4,pady=4)
     for i in range(3):bar.columnconfigure(i,weight=1)
     out=console(panel)

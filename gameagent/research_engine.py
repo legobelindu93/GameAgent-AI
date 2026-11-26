@@ -4,7 +4,7 @@ from pathlib import Path
 from urllib.parse import urlencode,urlsplit
 from urllib.request import Request,build_opener,HTTPRedirectHandler
 from urllib.error import HTTPError,URLError
-from .packs import registry,atomic,now,load_json,make,validate_record,coverage
+from .packs import registry,atomic,now,load_json,make,validate_record,coverage,digest,https_url
 from .knowledge import Knowledge
 from .profiles import ROOT
 BASE=ROOT.parent/"data"/"research"
@@ -49,6 +49,7 @@ def discover(game,topic=None,limit=8):
         except Exception as e:errors.append("Brave: "+str(e))
     result={"game":game,"query":query,"fetched":now(),"results":results,"errors":errors,"providers":{"youtube":bool(os.environ.get("YOUTUBE_API_KEY")),"brave":bool(os.environ.get("BRAVE_SEARCH_API_KEY"))}}
     atomic(BASE/game/"discovery.json",result)
+    atomic(BASE/game/"discovery"/(digest(query)[:20]+".json"),result)
     return result
 def research_cycle(game,max_queries=2):
     if not 1<=max_queries<=3:raise ValueError("Limit 1-3 queries")
@@ -58,7 +59,7 @@ def research_cycle(game,max_queries=2):
 def import_notes(game,path,source,patch,authorized=False):
     registry(game)
     if not authorized:raise ValueError("Confirm permission to use this document")
-    if urlsplit(source).scheme!="https" or not patch.strip():raise ValueError("Source and patch required")
+    if not https_url(source) or not patch.strip():raise ValueError("Source and patch required")
     p=Path(path)
     if p.suffix.lower() not in {".txt",".md",".vtt",".srt"}:raise ValueError("Supported: txt, md, vtt, srt")
     with p.open("rb") as f:raw=f.read(1_000_001)

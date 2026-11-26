@@ -8,6 +8,7 @@ from .account_import import import_account
 from .cloud_study import video_study,web_dossier
 from .pack_review import review,benchmark
 from .patch_watch import check
+from .factory import build_bundle,batch,offline_advice,dossier_candidates
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("game",choices=list(load_profiles()))
@@ -27,6 +28,10 @@ def main():
     a=sub.add_parser("web-study");a.add_argument("topic");a.add_argument("output");a.add_argument("--authorized",action="store_true")
     a=sub.add_parser("review");a.add_argument("file");a.add_argument("output");a.add_argument("--ids",nargs="+",required=True);a.add_argument("--version",required=True)
     sub.add_parser("benchmark");sub.add_parser("patch-check")
+    a=sub.add_parser("bundle");a.add_argument("output")
+    a=sub.add_parser("offline");a.add_argument("question")
+    a=sub.add_parser("batch");a.add_argument("--web",action="store_true");a.add_argument("--videos");a.add_argument("--authorized",action="store_true");a.add_argument("--refresh",action="store_true");a.add_argument("--max-web",type=int,default=1);a.add_argument("--max-video",type=int,default=1)
+    a=sub.add_parser("dossier-pack");a.add_argument("file");a.add_argument("output")
     args=p.parse_args();g=args.game;c=args.cmd
     if c=="sources":result=registry(g)
     elif c=="coverage":result=coverage(g)
@@ -54,5 +59,12 @@ def main():
         pack=review(verify(load_json(args.file),g),args.ids,args.version);atomic(args.output,pack);result={"approved":sum(r["review"]=="approved" for r in pack["records"])}
     elif c=="benchmark":result=benchmark(g)
     elif c=="patch-check":result=check(g)
+    elif c=="bundle":result=build_bundle(args.output)
+    elif c=="offline":result=offline_advice(g,args.question)
+    elif c=="batch":result=batch(g,args.web,args.videos,args.authorized,args.refresh,args.max_web,args.max_video)
+    elif c=="dossier-pack":
+        d=load_json(args.file)
+        if d["game"]!=g:raise ValueError("Wrong game")
+        pack=dossier_candidates(d);atomic(args.output,pack);result={"candidates":len(pack["records"])}
     print(json.dumps(result,ensure_ascii=False,indent=2))
 if __name__=="__main__":main()

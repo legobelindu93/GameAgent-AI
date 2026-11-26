@@ -78,7 +78,13 @@ def registry(game):
     return load_json(PACKS/"registry.json")[game]
 def coverage(game,root="data/knowledge"):
     db=Knowledge(game,root=root)
-    try:return {topic:len(db.search(topic,limit=8)) for topic in registry(game)["topics"]}
+    queries={
+        "beginner F2P progression":"débutant progression histoire exploration F2P",
+        "character builds and teams":"personnage équipe costume synergie soutien",
+        "resource economy and gear":"ressource économie équipement endurance matériaux",
+        "combat mechanics and endgame":"combat dégâts attaque boss mécanique",
+        "latest patch events":"événement annonce patch mise à jour"}
+    try:return {topic:len(db.search(queries.get(topic,topic),limit=8)) for topic in registry(game)["topics"]}
     finally:db.close()
 def compare(records):
     """Surface conflicting claims with same category/title/patch; never resolve automatically."""

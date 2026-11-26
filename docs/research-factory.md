@@ -19,3 +19,11 @@ No additional Python packages or GPU are required for pack import or metadata se
 - review PACK OUTPUT --ids ID1 ID2 --version 1.0.1 marks explicitly reviewed records as approved. Only run after verifying each source. Then install OUTPUT --trusted.
 - patch-check compares announcement search result URLs; this is not detection of authoritative patch numbers or deadlines.
 - benchmark checks seed retrieval@5 for one game, not strategy quality.
+
+## Bounded research and offline distribution
+- bundle OUTPUT builds and verifies all six starter packs and an integrity manifest.
+- offline QUESTION retrieves local evidence and a summary of imported account data, without a model or API. It is not a game-playing policy or optimizer.
+- batch --web --authorized selects the least-covered topic, runs a single cited remote research request by default, and caches the result under data/research/GAME/jobs. Each job contains a dossier and candidate pack. --max-web permits up to 3; --refresh explicitly reruns cached requests.
+- batch --videos FILE --authorized accepts a JSON array of entries with url, patch, authorized:true for videos you have permission to process. One video by default, max 2. No discovered video is analyzed without explicit permission.
+- dossier-pack FILE OUTPUT converts cited paragraphs to candidate records; verify citations against original pages. For a batch result, extract its nested pack object and use review after checking sources.
+- No recurring tasks are configured or run automatically. The CLI can be invoked when desired; no unattended spending by default.
