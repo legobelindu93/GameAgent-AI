@@ -1,174 +1,94 @@
-# GameAgent AI
+# GameAgent AI — Obsidian Studio
 
-![Version](https://img.shields.io/badge/version-0.14.0-7658e8)
+[![Version](https://img.shields.io/badge/version-0.15.0-8bb94b)](pyproject.toml)
+[![Tests](https://github.com/legobelindu93/GameAgent-AI/actions/workflows/tests.yml/badge.svg)](https://github.com/legobelindu93/GameAgent-AI/actions/workflows/tests.yml)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB)
-![Windows](https://img.shields.io/badge/platform-Windows-0078D4)
-![Status](https://img.shields.io/badge/status-research%20prototype-orange)
+![Platform](https://img.shields.io/badge/desktop-Windows-0078D4)
 
-**A modular desktop research studio for game strategy, local AI, computer vision and upstream application integration.**
+**A modular desktop research studio for game strategy, evidence retrieval, computer vision and third-party interface integration.**
 
-Six isolated game profiles, a unified launcher, native interface hosting, and a dedicated Brown Dust 2 F2P expert laboratory.
+GameAgent brings six isolated game profiles into a unified PySide6/Qt Widgets workspace, with offline knowledge packs, optional cloud research and a dedicated Brown Dust 2 F2P laboratory.
 
 > [!IMPORTANT]
-> GameAgent is a research prototype, not a fully autonomous player. The original third-party applications retain their own features. The strategy and simulation modules do not execute live game actions. Use third-party applications only in environments where their use is authorized.
+> This is a research prototype, not an autonomous game-playing agent. It does not send game inputs, bypass anti-cheat, make purchases or train a game-specific neural policy. Original upstream applications remain independent and must be used only where authorized.
 
-## Supported games
+## Quick start
 
-| Game | Upstream project | Integration |
-| --- | --- | --- |
-| NIKKE | [NIKKEAutoScript](https://github.com/megumiss/NIKKEAutoScript) | Python / local WebUI |
-| Brown Dust 2 | [MFABD2](https://github.com/sunyink/MFABD2) | Native UI, read-only task inventory, expert lab |
-| Genshin Impact | [BetterGI](https://github.com/babalae/better-genshin-impact) | .NET / WPF |
-| Wuthering Waves | [OK-WW](https://github.com/ok-oldking/ok-wuthering-waves) | Python / Qt |
-| Neverness to Everness | [OK-NTE](https://github.com/BnanZ0/ok-nte) | Python / Qt |
-| Honkai: Star Rail | [StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot) | Python / local WebUI |
-
-## Features
-
-- Game-specific dashboard, Segoe UI, status cards and configurable artwork.
-- GitHub release discovery and download, with size and published digest checks.
-- Isolated Python environments and partial Windows runtime provisioning.
-- Native executable registration, local WebUI display and experimental Win32 window hosting.
-- Read-only source inventory, diagnostics and logs.
-- SQLite FTS5 knowledge index, structured catalog, optional local Ollama advisor.
-- Offline OCR, authorized video transcription, synthetic combat and navigation experiments.
-
-## Installation
-
-Requirements: Windows 10/11, Git, Python 3.12+, [uv](https://docs.astral.sh/uv/). Optional: [Ollama](https://ollama.com/). Upstream applications require their own installation and may need different Python versions.
+Requirements: Windows 10/11, Git, Python 3.12+, [uv](https://docs.astral.sh/uv/). Open PowerShell in a simple local folder.
 
 ```powershell
 git clone https://github.com/legobelindu93/GameAgent-AI.git
 cd GameAgent-AI
-uv sync --all-extras
+uv sync --extra modern-ui --extra native-ui --extra vision --extra ocr
 uv run python -m gameagent
 ```
 
-Update an existing installation:
+For an existing installation, run `git pull origin main` from the repository, then repeat the sync and launch commands. Local data under `data/` is not replaced by a normal pull. Back it up before maintenance. The lightweight installation requires no API key or dedicated GPU. Optional extras are documented in the [user guide](docs/user-guide.md). Do not use all extras unless you need them.
+
+Classic fallback: `uv run python -m gameagent --classic`.
+
+## Game library
+
+| Profile | Upstream project | Interface path |
+|---|---|---|
+| NIKKE | [NIKKEAutoScript](https://github.com/megumiss/NIKKEAutoScript) | Python / local WebUI |
+| Brown Dust 2 | [MFABD2](https://github.com/sunyink/MFABD2) | Installed native executable; experimental hosting |
+| Genshin Impact | [BetterGI](https://github.com/babalae/better-genshin-impact) | Installed native executable |
+| Wuthering Waves | [OK-Wuthering-Waves](https://github.com/ok-oldking/ok-wuthering-waves) | Python / original interface |
+| Neverness to Everness | [OK-NTE](https://github.com/BnanZ0/ok-nte) | Python / original interface |
+| Honkai: Star Rail | [StarRailCopilot](https://github.com/LmeSzinc/StarRailCopilot) | Python / local WebUI |
+
+Each upstream project requires its own compatible installation. GameAgent can discover release assets, download an explicitly selected file without executing it, register an installed executable and launch the original interface. It does not bundle upstream code or provide a universal task API.
+
+## Obsidian Studio
+
+| Workspace | Main capabilities |
+|---|---|
+| Library | Six illustrated profiles and navigation |
+| Game console | Releases, dependencies, executable registration, WebUI, diagnostics and experimental native host |
+| Research Factory | 19 grouped operations: discovery, study, packs, account and analysis |
+| Knowledge Center | Guide retrieval, catalog search, optional local Ollama advisor |
+| F2P Expert | Manual account context and heuristic progression plan |
+| Tactical Lab | OCR, catalog import, simplified team optimization, authorized video study, RSS and log diagnostics |
+| Source Explorer | Read-only inventory, search and file preview |
+| Simulation | Synthetic combat, planning, demonstrations, SQLite memory and offline image matching |
+
+All eight workspaces have Qt Widgets implementations. Original Tkinter modules remain available. Figma: [Obsidian UI design](https://www.figma.com/design/jf3AoEy1IWJ4Ofq4DG4Uea). The application uses original procedural artwork, not official game art; permitted local artwork can override it ([instructions](assets/games/README.md)). Figma is a design reference, not a pixel-perfect rendering of the app.
+
+## Offline knowledge
 
 ```powershell
-git pull origin main
-uv sync --all-extras
-uv run python -m gameagent
-```
-
-Select a game, consult its Installation tab and original release instructions, register the installed executable, then open the original interface. The Interface originale tab can experimentally host compatible Windows windows. Local WebUIs require a running server. Complete automatic installation and direct task API integration are not implemented.
-
-## Brown Dust 2 Expert Lab
-
-```powershell
-uv run python -m gameagent.bd2_expert_ui
-uv run python -m gameagent.bd2_lab_ui
-```
-
-Optional local model:
-
-```powershell
-ollama pull qwen2.5:3b
-```
-
-The offline F2P planner works without Ollama. For the tactical optimizer, load `games/brown_dust_2/example_team.json` in the lab; its statistics are synthetic.
-
-| System | Current status |
-| --- | --- |
-| F2P progression planner | Heuristic prototype |
-| Knowledge base | Eight initial notes, patch-aware retrieval |
-| Character catalog | Partial seed of 65 names; normalized JSON import |
-| Costume and skill statistics | Incomplete |
-| Damage calculator | Simplified one-turn expected damage |
-| Team optimizer | SP-constrained permutations; up to 10 skills, 5 characters |
-| Screenshot OCR | Explicit local image selection |
-| Account memory | Confirmed resource values |
-| Video study | Local Whisper transcription and indexing, not model training |
-| News | RSS metadata implementation; endpoint unvalidated |
-| MFABD2 | Read-only local log discovery; no verified task API |
-| Autonomous gameplay | Not implemented |
-
-Manual integration observation: MFABD2 was launched and embedded, the PC game window was detected and its capture displayed. This does not validate every upstream application or task. Expert lab tests remain pending.
-
-## Architecture
-
-```text
-GameAgent-AI/
-├── gameagent/
-│   ├── launcher_ui.py       # Unified library
-│   ├── bridges.py           # Original UI launch
-│   ├── dependencies.py      # Partial provisioning
-│   ├── installations.py     # Release downloads
-│   ├── window_host.py       # Win32 hosting
-│   ├── task_catalog.py      # Read-only inventory
-│   ├── knowledge.py        # Evidence index
-│   ├── catalog.py          # Structured data
-│   ├── advisor.py          # Local AI advisor
-│   ├── bd2_expert.py       # F2P planning
-│   ├── bd2_tactics.py      # Tactical analysis
-│   ├── bd2_observe.py      # OCR and diagnostics
-│   ├── bd2_data.py         # Catalog and snapshots
-│   ├── bd2_news.py         # News metadata
-│   └── bd2_lab_ui.py       # Expert lab
-├── games/                  # Profiles and data
-├── assets/games/            # Optional local artwork
-├── data/                    # Local environments and data
-├── docs/
-└── tests/
-```
-
-## Development and tests
-
-```powershell
-uv run python -m unittest discover -s tests -v
-uv run python -m gameagent.benchmark
-uv run python -m gameagent.lab route genshin_impact
-uv run python -m gameagent.lab inspect nikke screenshot.png
-uv run python -m gameagent.train --steps 10000
-uv run python -m gameagent.lab train-navigation --steps 10000
-```
-
-Training and navigation environments are synthetic. No trained game-specific model is included. Test commands are supplied for local validation; passing results are not asserted.
-
-## Research & Knowledge Factory (v0.12.0)
-
-```powershell
-uv run python -m gameagent.research_center_ui
 uv run python -m gameagent.research_center brown_dust_2 bootstrap
-uv run python -m gameagent.research_center brown_dust_2 cycle
 uv run python -m gameagent.research_center brown_dust_2 offline "progression F2P"
-uv run python -m gameagent.research_center brown_dust_2 bundle data/packs
+uv run python -m gameagent.qt_research
 ```
 
-Six source registries, 40 curated starter notes across six games, offline SHA-256 pack validation, candidate/approved separation, authorized transcript imports, optional YouTube/Brave discovery optional remote document compilation, cited web dossiers and public YouTube video study through Gemini. No GPU required for pack import, evidence retrieval, discovery or remote analysis. The bounded batch workflow prioritizes knowledge gaps and caches candidate results. Cloud calls require explicit opt-in and separate keys. For a lightweight setup use `uv sync` rather than `--all-extras`; add `--extra cloud-study` only for remote video analysis. External providers need credentials and may incur costs; no automatic video downloading or model training. See [research factory documentation](docs/research-factory.md).
-
-## Roadmap
-
-- Complete versioned costume, character and equipment data.
-- Validate damage formulas and multi-turn tactical evaluation.
-- Improve screenshot interpretation and confirmed account-state extraction.
-- Validate news sources and event calendars.
-- Improve read-only diagnostics, Windows compatibility and strategy benchmarks.
-- Extend the expert approach to other profiles.
+Bootstrap installs the six starter packs (40 initial records: 20 BD2 and four per other game). These are limited, manually prepared references, not an independently verified complete game database. Review sources and patch applicability. Offline advice retrieves evidence rather than computing an optimal game policy. Optional remote research produces candidate records requiring human review. See [Research Factory](docs/research-factory.md).
 
 ## Documentation
 
-- [BD2 expert advisor](docs/bd2-expert.md)
-- [BD2 expert lab](docs/bd2-lab.md)
-- [Upstream bridges](docs/upstream-bridges.md)
-- [Native window hosting](docs/native-host.md)
-- [Launcher](docs/launcher.md)
-- [Visual customization](docs/visual-refresh.md)
-- [Synthetic navigation](docs/navigation.md)
+| Document | Purpose |
+|---|---|
+| [Documentation index](docs/README.md) | All guides and reference pages |
+| [User guide (FR)](docs/user-guide.md) | Installation, every workspace, troubleshooting |
+| [Technical reference (FR)](docs/technical-reference.md) | Architecture, modules, schemas, API boundaries, testing |
+| [Architecture](docs/architecture.md) | Component map and flows |
+| [Validation](docs/validation.md) | Automated tests and manual acceptance |
+| [Release notes](CHANGELOG.md) | Version history and remaining limitations |
 
-## Credits
+## Development
 
-GameAgent is independent of publishers and upstream projects. Credit and licensing remain with the original authors. Consult their licenses before redistribution. No official game artwork or upstream release binaries are bundled. Community guides are version-sensitive. The advisor does not make purchases or send game inputs.
+```powershell
+uv run python -m unittest discover -s tests -v
+uv sync --extra modern-ui --extra navigation
+uv run python -m unittest discover -s tests -v
+uv run python -m gameagent.benchmark
+```
 
-## Obsidian Studio (v0.13.0)
+GitHub Actions passed on Windows and Ubuntu for the v0.15 merge candidate ([run 45852548517](https://github.com/legobelindu93/GameAgent-AI/actions/runs/45852548517)). CI uses offscreen Qt tests; it does not validate live commercial games, external APIs, actual native window embedding or visual polish. Optional training remains synthetic.
 
-Install the optional modern library with `uv sync --extra modern-ui --extra native-ui --extra vision --extra ocr`, then launch `uv run python -m gameagent`. Original full panels remain accessible from the library and via `uv run python -m gameagent.launcher_ui`. Original offline procedural landscape illustrations are supplied at runtime; user-provided artwork at `assets/games/<game>/banner.png` takes precedence. No publisher artwork is redistributed. The Qt shell is a progressive migration, not a full Qt port of every panel.
+## Roadmap and credits
 
-### Qt workbenches (v0.14.0)
+Priorities: manual Windows acceptance, better visual assets, independently verified patch-aware data, richer tactical models, improved diagnostics and expert coverage for other profiles. No autonomous gameplay is implemented.
 
-Research Factory (19 actions), Knowledge Center (3), F2P Expert (3), and Tactical Lab (7) now open in modern Qt windows with shared artwork, grouped commands, split results, and background processing. Classic modules remain available. Native hosting, source explorer and simulation still use the original Tk panels.
-
-### Qt console, sources and simulation (v0.15.0)
-
-The remaining three workspaces have Qt implementations. The console uses the existing PID-scoped Win32 host through a native QWidget adapter. Embedding remains experimental and requires manual Windows validation; the classic launcher remains available. The source explorer is read-only and requires an explicit refresh; the simulation remains synthetic. All legacy module entry points are preserved.
+GameAgent is independent of the publishers and upstream authors listed above. Their code, artwork and licenses remain theirs; verify permissions before use or redistribution. No upstream release binaries or official game art are bundled. A complete license/security review of third-party integrations remains outstanding.

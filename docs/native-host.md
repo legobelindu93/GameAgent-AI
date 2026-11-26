@@ -1,4 +1,7 @@
-# Windows host
-Install via uv sync --all-extras. The Installation tab can provision BetterGI's documented .NET 8 Desktop and VC++ x64 runtime using winget, or install a reviewed local requirements.txt into a per-game uv environment with an explicitly selected Python version. This is not a complete installer for every upstream: project-specific binaries, models, native SDKs, packaging scripts and launch commands still need upstream installation.
-The Interface intégrée tab can reparent a visible window owned by a process launched from GameAgent, using Win32 SetParent. It preserves the original controls; no individual bot API or tasks are implemented. Qt/WPF behavior depends on DPI awareness, privilege and process ownership; detach or use external mode if incompatible. Child-process launchers are not handled. Never elevate GameAgent just to attach a window. Use only authorized automation environments.
-Sources: https://github.com/babalae/better-genshin-impact/blob/main/.github/workflows/mirrorchyan_uploading.yml ; https://github.com/ok-oldking/ok-wuthering-waves/blob/master/pyappify.yml ; https://github.com/BnanZ0/ok-nte/blob/main/pyproject.toml . Local execution not validated.
+# Windows native host — v0.15
+
+Install modern-ui and native-ui extras. The console can explicitly provision .NET Desktop Runtime 10 and VC++ x64 via winget for BetterGI/MFABD2, or a reviewed root requirements.txt in an isolated uv environment for supported Python projects. This is not a universal installer.
+
+In Interface native, select a visible window owned by the process started from this console. The Qt NativeSurface adapter reuses WindowHost and Win32 SetParent; parent, style and rectangle are saved for detach. DPI, privilege and process ownership affect compatibility. Child-process launchers are not supported. Use external mode or the classic launcher if incompatible. Do not elevate GameAgent to bypass permissions.
+
+Prior MFABD2 capture/embedding was manually observed using the classic launcher; the Qt adapter still requires actual Windows acceptance. Offscreen CI tests construction only. No task execution API or automatic game actions are introduced.
