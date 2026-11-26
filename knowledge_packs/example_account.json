@@ -1,0 +1,15 @@
+{
+  "game": "brown_dust_2",
+  "resources": {
+    "diamonds": 0,
+    "tickets": 0
+  },
+  "roster": [
+    {
+      "character": "Example",
+      "costume": "Synthetic",
+      "level": 1,
+      "upgrade": 0
+    }
+  ]
+}
