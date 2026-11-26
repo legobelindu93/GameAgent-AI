@@ -29,7 +29,7 @@ QPushButton#nav {background:transparent;border:0;color:#a6abb5;}
 QPushButton#nav:hover {background:#22291b;color:#c5f36b;}
 QScrollArea {border:0;} QScrollBar:vertical {background:#101116;width:9px;} QScrollBar::handle:vertical {background:#424650;border-radius:4px;min-height:24px;}
 """
-TOOLS=[("Research Factory","gameagent.research_center_ui"),("Connaissances","gameagent.research_ui"),("Expert F2P","gameagent.bd2_expert_ui"),("Laboratoire tactique","gameagent.bd2_lab_ui"),("Explorateur de sources","gameagent.hub_ui"),("Simulation","gameagent.simulation_ui")]
+TOOLS=[("Research Factory","gameagent.qt_research"),("Connaissances","gameagent.qt_knowledge"),("Expert F2P","gameagent.qt_expert"),("Laboratoire tactique","gameagent.qt_lab"),("Explorateur de sources","gameagent.hub_ui"),("Simulation","gameagent.simulation_ui")]
 def label(text,kind=""):
     w=QLabel(text);w.setObjectName(kind);w.setWordWrap(True);return w
 def button(text,fn,kind=""):
@@ -49,7 +49,7 @@ class Studio(QMainWindow):
         for title,module in TOOLS:nav.addWidget(button(title,lambda checked=False,m=module:self.open_module(m),"nav"))
         nav.addSpacing(18);nav.addWidget(label("PROFILS","eyebrow"))
         for game,p in self.profiles.items():nav.addWidget(button(p["name"],lambda checked=False,g=game:self.profile(g),"nav"))
-        nav.addStretch();nav.addWidget(button("Launcher complet / classique",lambda:self.open_module("gameagent.launcher_ui"),"nav"));nav.addWidget(label("v0.13 · Prototype","subtitle"))
+        nav.addStretch();nav.addWidget(button("Launcher complet / classique",lambda:self.open_module("gameagent.launcher_ui"),"nav"));nav.addWidget(label("v0.14 · Prototype","subtitle"))
         layout.addWidget(side)
         self.scroll=QScrollArea();self.scroll.setWidgetResizable(True);layout.addWidget(self.scroll,1);self.library()
     def open_module(self,module,game=None):
