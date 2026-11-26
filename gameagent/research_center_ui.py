@@ -8,6 +8,10 @@ from .profiles import load_profiles
 from .packs import PACKS,registry,coverage,load_json,make,atomic,install,verify,compare
 from .research_engine import discover,research_cycle,import_notes,compile_candidates
 from .account_import import import_account
+from .cloud_study import video_study,web_dossier
+from .pack_review import benchmark
+from .patch_watch import check
+import webbrowser
 
 def main():
     root=tk.Tk();root.title("GameAgent | Research Center");root.geometry("1050x760");apply(root)
@@ -74,7 +78,33 @@ def main():
             def run():
                 pack=compile_candidates(g,p,"1.0.0",s,v,True);atomic(target,pack);return {"candidates":len(pack["records"]),"output":target}
             job(run)
-    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account)]):
+    def video_url():
+        g=game.get();url=simpledialog.askstring("Vidéo","URL YouTube publique autorisée")
+        if not url:return
+        patch=simpledialog.askstring("Version","Version du guide ou date")
+        if not patch:return
+        target=filedialog.asksaveasfilename(defaultextension=".json")
+        if target and messagebox.askyesno("Analyse distante","Confirmer les droits d'utilisation et l'analyse via Gemini ? Des frais peuvent s'appliquer."):
+            def run():
+                pack=video_study(g,url,patch,authorized=True);atomic(target,pack);return {"candidates":len(pack["records"]),"output":target}
+            job(run)
+    def web_study():
+        g=game.get();topic=simpledialog.askstring("Recherche IA","Sujet")
+        if not topic:return
+        target=filedialog.asksaveasfilename(defaultextension=".json")
+        if target and messagebox.askyesno("Recherche distante","Autoriser une recherche API (frais possibles) ?"):
+            def run():
+                result=web_dossier(g,topic,True);atomic(target,result);return result
+            job(run)
+    def open_source():
+        from .packs import https_url
+        url=simpledialog.askstring("Source","Coller une URL HTTPS du résultat")
+        if url and https_url(url):webbrowser.open(url)
+    def patch_check():
+        g=game.get();job(lambda:check(g))
+    def bench():
+        g=game.get();job(lambda:benchmark(g))
+    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account),("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Vérifier annonces",patch_check),("Benchmark local",bench),("Ouvrir une source",open_source)]):
         ttk.Button(bar,text=name,command=fn).grid(row=i//3,column=i%3,sticky="ew",padx=4,pady=4)
     for i in range(3):bar.columnconfigure(i,weight=1)
     out=console(panel)

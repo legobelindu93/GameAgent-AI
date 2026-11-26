@@ -134,7 +134,7 @@ uv run python -m gameagent.research_center brown_dust_2 seed
 uv run python -m gameagent.research_center brown_dust_2 cycle
 ```
 
-Six source registries, a reviewed BD2 seed, offline SHA-256 pack validation, candidate/approved separation, authorized transcript imports, optional YouTube/Brave discovery and optional remote document compilation. No GPU required for these operations. External providers need credentials and may incur costs; no automatic video downloading or model training. See [research factory documentation](docs/research-factory.md).
+Six source registries, reviewed starter seeds for all six games, offline SHA-256 pack validation, candidate/approved separation, authorized transcript imports, optional YouTube/Brave discovery optional remote document compilation, cited web dossiers and public YouTube video study through Gemini. No GPU required for pack import, discovery or remote analysis. Cloud calls require explicit opt-in and separate keys. External providers need credentials and may incur costs; no automatic video downloading or model training. See [research factory documentation](docs/research-factory.md).
 
 ## Roadmap
 

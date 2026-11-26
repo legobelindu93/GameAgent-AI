@@ -1,0 +1,42 @@
+[
+  {
+    "id": "neverness_to_everness-1",
+    "category": "progression",
+    "title": "Exploration Guide",
+    "claim": "Les missions d'Exploration Guide constituent un axe de progression ; l'exploration peut aussi fournir de la monnaie d'invocation.",
+    "source": "https://www.prydwen.gg/neverness-to-everness/guides/beginner-guide",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Exploration Guide",
+    "review": "approved"
+  },
+  {
+    "id": "neverness_to_everness-2",
+    "category": "combat",
+    "title": "Esper Cycle",
+    "claim": "Le déclenchement de l'Esper Cycle dépend de la jauge et des conditions élémentaires ; tenir compte des synergies d'équipe.",
+    "source": "https://www.prydwen.gg/neverness-to-everness/guides/tips-and-tricks",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Esper Cycle",
+    "review": "approved"
+  },
+  {
+    "id": "neverness_to_everness-3",
+    "category": "equipment",
+    "title": "Arcs",
+    "claim": "Les Arcs améliorent les statistiques et effets de combat ; leurs sources incluent notamment des boss Anomaly et des échanges.",
+    "source": "https://www.prydwen.gg/neverness-to-everness/guides/character-progression",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Arcs",
+    "review": "approved"
+  },
+  {
+    "id": "neverness_to_everness-4",
+    "category": "economy",
+    "title": "Personnages gratuits",
+    "claim": "Consulter les personnages gratuits disponibles avant de dépenser des monnaies d'invocation.",
+    "source": "https://www.prydwen.gg/neverness-to-everness/guides/free-characters",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Free characters",
+    "review": "approved"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "nikke-1",
+    "category": "economy",
+    "title": "Production Outpost",
+    "claim": "L'Outpost produit des ressources même lorsque le jeu est fermé ; consulter les limites et récupérer les ressources disponibles.",
+    "source": "https://www.prydwen.gg/nikke/guides/outpost-output",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Outpost output",
+    "review": "approved"
+  },
+  {
+    "id": "nikke-2",
+    "category": "progression",
+    "title": "Déblocage du Synchro Device",
+    "claim": "Le Synchro Device est lié à la progression de la campagne ; le guide situe son ouverture au stage 4-15, à vérifier dans le client.",
+    "source": "https://www.prydwen.gg/nikke/guides/outpost",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Synchro Device",
+    "review": "approved"
+  },
+  {
+    "id": "nikke-3",
+    "category": "teams",
+    "title": "Priorité PvE débutant",
+    "claim": "Évaluer les unités pour leur contribution à la campagne avant de privilégier celles dédiées au PvP.",
+    "source": "https://www.prydwen.gg/nikke/guides/reroll",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Reroll priorities",
+    "review": "approved"
+  },
+  {
+    "id": "nikke-4",
+    "category": "equipment",
+    "title": "Investissements de personnages",
+    "claim": "Identifier les blocages de matériaux de niveau avant de répartir les améliorations.",
+    "source": "https://www.prydwen.gg/nikke/guides/level-requirements",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Level requirements",
+    "review": "approved"
+  }
+]

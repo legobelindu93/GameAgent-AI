@@ -5,6 +5,9 @@ from .profiles import load_profiles
 from .packs import PACKS,registry,make,verify,load_json,atomic,install,coverage,compare
 from .research_engine import discover,research_cycle,import_notes,compile_candidates
 from .account_import import import_account
+from .cloud_study import video_study,web_dossier
+from .pack_review import review,benchmark
+from .patch_watch import check
 def main():
     p=argparse.ArgumentParser()
     p.add_argument("game",choices=list(load_profiles()))
@@ -20,6 +23,10 @@ def main():
     a=sub.add_parser("compile");a.add_argument("file");a.add_argument("output");a.add_argument("--source",required=True);a.add_argument("--patch",required=True);a.add_argument("--version",required=True);a.add_argument("--authorized",action="store_true")
     a=sub.add_parser("account");a.add_argument("file");a.add_argument("--confirmed",action="store_true")
     a=sub.add_parser("conflicts");a.add_argument("file")
+    a=sub.add_parser("video-url");a.add_argument("url");a.add_argument("output");a.add_argument("--patch",required=True);a.add_argument("--version",default="1.0.0");a.add_argument("--authorized",action="store_true")
+    a=sub.add_parser("web-study");a.add_argument("topic");a.add_argument("output");a.add_argument("--authorized",action="store_true")
+    a=sub.add_parser("review");a.add_argument("file");a.add_argument("output");a.add_argument("--ids",nargs="+",required=True);a.add_argument("--version",required=True)
+    sub.add_parser("benchmark");sub.add_parser("patch-check")
     args=p.parse_args();g=args.game;c=args.cmd
     if c=="sources":result=registry(g)
     elif c=="coverage":result=coverage(g)
@@ -39,5 +46,13 @@ def main():
         pack=compile_candidates(g,args.file,args.version,args.source,args.patch,args.authorized);atomic(args.output,pack);result={"candidates":len(pack["records"]),"output":args.output}
     elif c=="account":result=import_account(g,args.file,args.confirmed)
     elif c=="conflicts":result=compare(verify(load_json(args.file),g)["records"])
+    elif c=="video-url":
+        pack=video_study(g,args.url,args.patch,args.version,args.authorized);atomic(args.output,pack);result={"candidates":len(pack["records"]),"output":args.output}
+    elif c=="web-study":
+        result=web_dossier(g,args.topic,args.authorized);atomic(args.output,result)
+    elif c=="review":
+        pack=review(verify(load_json(args.file),g),args.ids,args.version);atomic(args.output,pack);result={"approved":sum(r["review"]=="approved" for r in pack["records"])}
+    elif c=="benchmark":result=benchmark(g)
+    elif c=="patch-check":result=check(g)
     print(json.dumps(result,ensure_ascii=False,indent=2))
 if __name__=="__main__":main()
