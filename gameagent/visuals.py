@@ -32,6 +32,13 @@ class Banner(tk.Canvas):
                 self.create_image(0,0,image=self.photo,anchor="nw")
             except (ImportError,OSError,ValueError):pass
         if self.photo is None:
+            from .obsidian_art import cover
+            from PIL import Image,ImageTk
+            image=cover(self.game,w,h)
+            image=Image.blend(image,Image.new("RGB",image.size,"#080a10"),0.45)
+            self.photo=ImageTk.PhotoImage(image)
+            self.create_image(0,0,image=self.photo,anchor="nw")
+        if self.photo is None:
             self.create_polygon(w*.61,0,w,0,w,h,w*.43,h,fill="#253346",outline="")
             self.create_polygon(w*.88,0,w,0,w*.72,h,w*.60,h,fill=accent,outline="")
             self.create_oval(w-180,-55,w+35,160,outline=accent,width=2)

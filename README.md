@@ -1,6 +1,6 @@
 # GameAgent AI
 
-![Version](https://img.shields.io/badge/version-0.12.0-7658e8)
+![Version](https://img.shields.io/badge/version-0.13.0-7658e8)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB)
 ![Windows](https://img.shields.io/badge/platform-Windows-0078D4)
 ![Status](https://img.shields.io/badge/status-research%20prototype-orange)
@@ -160,3 +160,7 @@ Six source registries, 40 curated starter notes across six games, offline SHA-25
 ## Credits
 
 GameAgent is independent of publishers and upstream projects. Credit and licensing remain with the original authors. Consult their licenses before redistribution. No official game artwork or upstream release binaries are bundled. Community guides are version-sensitive. The advisor does not make purchases or send game inputs.
+
+## Obsidian Studio (v0.13.0)
+
+Install the optional modern library with `uv sync --extra modern-ui --extra native-ui --extra vision --extra ocr`, then launch `uv run python -m gameagent`. Original full panels remain accessible from the library and via `uv run python -m gameagent.launcher_ui`. Original offline procedural landscape illustrations are supplied at runtime; user-provided artwork at `assets/games/<game>/banner.png` takes precedence. No publisher artwork is redistributed. The Qt shell is a progressive migration, not a full Qt port of every panel.

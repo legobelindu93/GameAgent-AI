@@ -135,9 +135,17 @@ def main():
         except Exception as exc:show({"error":str(exc)})
     def all_seeds():
         if messagebox.askyesno("Packs","Installer les six packs initiaux fournis avec GameAgent ?"):job(bootstrap)
-    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account),("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Vérifier annonces",patch_check),("Benchmark local",bench),("Ouvrir une source",open_source),("Conseil hors ligne",offline),("Recherche autonome ciblée",batch_web),("Exporter les six packs",bundle),("Valider un pack",review_pack),("Installer les six packs",all_seeds)]):
-        ttk.Button(bar,text=name,command=fn).grid(row=i//3,column=i%3,sticky="ew",padx=4,pady=4)
-    for i in range(3):bar.columnconfigure(i,weight=1)
+    tabs=ttk.Notebook(bar);tabs.pack(fill="x")
+    groups=[
+        ("Découvrir",[("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Recherche autonome ciblée",batch_web),("Vérifier annonces",patch_check)]),
+        ("Étudier",[("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Ouvrir une source",open_source)]),
+        ("Packs",[("Installer pack initial",seed),("Installer les six packs",all_seeds),("Importer pack",pack),("Exporter les six packs",bundle),("Valider un pack",review_pack)]),
+        ("Compte & analyse",[("Importer compte",account),("Conseil hors ligne",offline),("Benchmark local",bench)])]
+    for title,items in groups:
+        page=ttk.Frame(tabs,padding=10);tabs.add(page,text=title)
+        for i,(name,fn) in enumerate(items):
+            ttk.Button(page,text=name,command=fn).grid(row=i//2,column=i%2,sticky="ew",padx=4,pady=4)
+        for i in range(2):page.columnconfigure(i,weight=1)
     out=console(panel)
     root.protocol("WM_DELETE_WINDOW",lambda:(pool.shutdown(wait=False,cancel_futures=True),root.destroy()))
     root.mainloop()
