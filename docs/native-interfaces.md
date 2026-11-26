@@ -1,11 +1,13 @@
-# Native interfaces
-GameAgent can register an already installed Windows executable per game and open its original native interface as a separate process. For web-based interfaces, configure the documented local URL and open a separate embedded browser window (pywebview). No automatic tasks, no bypass, no bundling third-party binaries. Desktop WPF and Qt windows are not embedded into Tkinter.
-Install the optional UI dependency: uv sync --extra native-ui
-Original project installation sources:
+# Native interfaces — v0.15
+
+Register the installed upstream Windows executable per game and open its original interface. Configure an HTTP loopback URL and port for WebUI, then open a separate pywebview window. Experimental Win32 embedding is available through the Qt console and classic launcher. See [native host](native-host.md).
+
+Original installation sources:
 - NIKKE: https://github.com/megumiss/NIKKEAutoScript/wiki
-- Brown Dust 2: https://github.com/sunyink/MFABD2/releases (Windows package; emulator required per upstream)
+- Brown Dust 2: https://github.com/sunyink/MFABD2/releases
 - Genshin: https://www.bettergi.com/download.html
-- Wuthering Waves: https://github.com/ok-oldking/ok-wuthering-waves/blob/master/docs/en/index.md
+- Wuthering Waves: https://github.com/ok-oldking/ok-wuthering-waves
 - NTE: https://github.com/BnanZ0/ok-nte/releases
 - Star Rail: https://github.com/LmeSzinc/StarRailCopilot/wiki/Installation_en
-Only install trusted releases after checking their licenses and applicable game rules. Existing local source clones are not installed executables. No installation or verification on the user's machine has been performed.
+
+Check the exact release and its supported client modes; compatibility varies. No upstream binaries bundled, no automatic tasks or bypass. Prior classic MFABD2 PC capture was observed, not all integrations validated.

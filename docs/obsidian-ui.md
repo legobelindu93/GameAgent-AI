@@ -1,12 +1,13 @@
-# Obsidian Studio
+# Obsidian Studio — v0.15
 
-The optional Qt shell is a new library and navigation layer, not a replacement for the mature native host. It opens the complete original per-game panel with the chosen profile. All old entry points remain available; their common Tk theme is refreshed. Research Factory groups all 19 existing commands into four tabs. The existing original-app host is intentionally unchanged.
+All eight workspaces have PySide6 Qt Widgets implementations. The library starts each workspace as a separate Python process. The console retains the original Windows host through a QWidget adapter; the classic Tkinter panels remain available. The shared Qt Workbench provides grouped controls, banner, splitter, output, clipboard copy and a single-worker executor.
 
-Artwork: six deterministic original procedural illustrations generated with Pillow, cached in memory. To use authorized publisher or personal artwork, supply assets/games/<game>/banner.png (or jpg/webp). No network request or publisher asset included. Restart the app after changing art.
+```powershell
+uv sync --extra modern-ui --extra native-ui --extra vision --extra ocr
+uv run python -m gameagent
+uv run python -m gameagent --classic
+```
 
-Install: uv sync --extra modern-ui --extra native-ui --extra vision --extra ocr
-Launch: uv run python -m gameagent
-Classic: uv run python -m gameagent --classic
-Add other extras (cloud-study, video, learning, navigation) as required by the existing features.
+Artwork is generated offline; authorized local banner files take precedence. See [artwork](../assets/games/README.md). The design [Figma reference](https://www.figma.com/design/jf3AoEy1IWJ4Ofq4DG4Uea) uses Inter, whereas Qt uses Segoe UI. The UI is not QML or a pixel-perfect port. CI validates construction and selected behavior offscreen, not visual layout or live hosting.
 
-The Figma design reference is https://www.figma.com/design/jf3AoEy1IWJ4Ofq4DG4Uea?node-id=6-92 . Qt uses Segoe UI as a system font rather than bundling Inter. The current implementation is a Qt Widgets progressive migration, not QML, and the auxiliary windows remain Tkinter.
+See [user guide](user-guide.md) and [technical reference](technical-reference.md).

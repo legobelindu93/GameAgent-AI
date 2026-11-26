@@ -1,5 +1,5 @@
 # Research Factory
-Run python -m gameagent.research_center_ui or python -m gameagent.research_center GAME --help.
+Run python -m gameagent.qt_research or python -m gameagent.research_center GAME --help.
 No additional Python packages or GPU are required for pack import or metadata search.
 - sources: registered discovery links, not permission to scrape.
 - cycle: up to three topic searches prioritized by FTS hit count, a weak coverage proxy, not a proof of expertise. Without keys returns registered links only.
@@ -7,10 +7,10 @@ No additional Python packages or GPU are required for pack import or metadata se
 - Import authorized transcripts with notes FILE --source HTTPS --patch VERSION --authorized. Local video transcription remains in gameagent.research. No unauthorized captions or video download. The YouTube API requires permissions for caption download: https://developers.google.com/youtube/data/reference/rest/v3/captions/download
 - Remote compilation is optional: set OPENAI_API_KEY and GAMEAGENT_REMOTE_MODEL, then compile FILE OUTPUT --version 1.0.0 --source HTTPS --patch VERSION --authorized. Sends explicitly selected excerpt to API; possible charges. Produces candidate-only pack.
 - Human review: export records array from pack JSON, verify sources, edit review to approved only where supported, build RECORDS OUTPUT --version 1.0.1, verify OUTPUT, install OUTPUT --trusted. SHA-256 is integrity only, not a digital signature. Review is an explicit trust decision. Candidate entries never enter advisor index via pack installer. Imports are additive; historical entries are not automatically deleted.
-- seed installs reviewed, limited BD2 pack. All six games now have limited reviewed starter notes, not complete databases.
+- seed installs reviewed, limited BD2 pack. All six games now have limited starter notes marked approved (independent verification outstanding), not complete databases.
 - account FILE --confirmed imports normalized JSON (see knowledge_packs/example_account.json). No direct game export compatibility claimed.
 - conflicts FILE compares identical topic/patch labels; no semantic conflict resolution.
-- Discovery is metadata only; remote compiler cannot browse or watch videos. No ongoing scheduled updates until explicitly configured. No automated game inputs. Network and Windows integration tests remain pending.
+- Discovery is metadata only; remote compiler cannot browse or watch videos. No ongoing scheduled updates until explicitly configured. No automated game inputs. Base Windows/Ubuntu CI passed for v0.15; live remote API and actual native integrations remain unvalidated.
 
 ## Cloud video and web study
 - Install the optional cloud-study extra, configure GEMINI_API_KEY and GAMEAGENT_VIDEO_MODEL (model supporting YouTube video input). See https://ai.google.dev/gemini-api/docs/video-understanding#youtube . One authorized public video per request. No local video download. The service is subject to its own rights, quotas, model availability and pricing; no live call was made in development.
@@ -30,8 +30,11 @@ No additional Python packages or GPU are required for pack import or metadata se
 
 ## Lightweight installation
 ```powershell
-uv sync
+uv sync --extra modern-ui
 uv run python -m gameagent.research_center brown_dust_2 bootstrap
-uv run python -m gameagent.research_center_ui
+uv run python -m gameagent.qt_research
 ```
-For remote video: uv sync --extra cloud-study. For launcher capture/hosting, install --extra vision --extra ocr --extra native-ui as needed. Avoid --all-extras unless you also want synthetic RL training dependencies. Bootstrap is offline and installs all six starter packs. The BD2 pack includes 20 reviewed notes; the five other packs include four each. No credentials in the repository.
+For remote video: uv sync --extra modern-ui --extra cloud-study. For launcher capture/hosting, install --extra vision --extra ocr --extra native-ui as needed. Avoid --all-extras unless you also want synthetic RL training dependencies. Bootstrap is offline and installs all six starter packs. The BD2 pack includes 20 starter notes marked approved in the supplied seed (independent verification outstanding); the five other packs include four each. No credentials in the repository.
+
+
+Current version: 0.15. See the [user guide](user-guide.md) and [technical reference](technical-reference.md).
