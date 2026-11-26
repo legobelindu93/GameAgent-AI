@@ -1,6 +1,6 @@
 # GameAgent AI
 
-![Version](https://img.shields.io/badge/version-0.13.0-7658e8)
+![Version](https://img.shields.io/badge/version-0.14.0-7658e8)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB)
 ![Windows](https://img.shields.io/badge/platform-Windows-0078D4)
 ![Status](https://img.shields.io/badge/status-research%20prototype-orange)
@@ -164,3 +164,7 @@ GameAgent is independent of publishers and upstream projects. Credit and licensi
 ## Obsidian Studio (v0.13.0)
 
 Install the optional modern library with `uv sync --extra modern-ui --extra native-ui --extra vision --extra ocr`, then launch `uv run python -m gameagent`. Original full panels remain accessible from the library and via `uv run python -m gameagent.launcher_ui`. Original offline procedural landscape illustrations are supplied at runtime; user-provided artwork at `assets/games/<game>/banner.png` takes precedence. No publisher artwork is redistributed. The Qt shell is a progressive migration, not a full Qt port of every panel.
+
+### Qt workbenches (v0.14.0)
+
+Research Factory (19 actions), Knowledge Center (3), F2P Expert (3), and Tactical Lab (7) now open in modern Qt windows with shared artwork, grouped commands, split results, and background processing. Classic modules remain available. Native hosting, source explorer and simulation still use the original Tk panels.
