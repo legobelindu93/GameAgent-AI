@@ -1,8 +1,7 @@
 """Bounded research jobs, reusable output cache and GPU-free advisory retrieval."""
-import re
 from pathlib import Path
 from .packs import PACKS,registry,coverage,make,verify,load_json,atomic,digest,now,validate_record,install
-from .research_engine import research_cycle,BASE
+from .research_engine import BASE
 from .cloud_study import web_dossier,video_study,youtube_url
 from .knowledge import Knowledge
 from .profiles import ROOT,load_profiles
@@ -20,6 +19,10 @@ def build_bundle(output):
     result={"schema":1,"packs":manifests}
     atomic(output/"manifest.json",result)
     return result
+
+def bootstrap(output="data/packs/starter",root="data/knowledge"):
+    result=build_bundle(output)
+    return [install(Path(output)/m["file"],m["game"],root=root,trusted=True) for m in result["packs"]]
 
 def dossier_candidates(dossier,version="1.0.0"):
     """Conservatively extract cited paragraphs as candidates; annotations aren't proof."""
@@ -49,17 +52,35 @@ def batch(game,web=False,video_file=None,authorized=False,refresh=False,max_web=
     registry(game)
     if type(max_web)!=int or type(max_video)!=int or not 0<=max_web<=3 or not 0<=max_video<=2:raise ValueError("Limits: 0-3 web, 0-2 video")
     if (web or video_file) and not authorized:raise ValueError("Explicit permission for remote processing required")
+    candidates=[]
+    if video_file:
+        obj=load_json(video_file)
+        if not isinstance(obj,list) or len(obj)>100:raise ValueError("Expected a limited list of approved video URLs")
+        candidates=[]
+        for row in obj:
+            if not isinstance(row,dict) or set(row)!={"url","patch","authorized"} or row["authorized"] is not True:raise ValueError("Video must have explicit authorization")
+            if not isinstance(row["patch"],str) or not row["patch"].strip():raise ValueError("Patch/date required")
+            candidates.append({"url":youtube_url(row["url"]),"patch":row["patch"]})
     root=BASE/game/"jobs";root.mkdir(parents=True,exist_ok=True)
     gaps=coverage(game)
-    selected=sorted(gaps,key=lambda t:gaps[t])[:max_web]
+    def job_path(kind,key):
+        return root/(kind+"-"+digest(key)[:24]+".json")
+    selected=sorted(gaps,key=lambda t:(not refresh and job_path("web",{"topic":t}).exists(),gaps[t]))[:max_web]
     report={"game":game,"started":now(),"coverage_proxy":gaps,"jobs":[]}
     def execute(kind,key,fn):
-        target=root/(kind+"-"+digest(key)[:24]+".json")
+        target=job_path(kind,key)
+        pack_path=target.with_name(target.stem+".pack.json")
         if target.exists() and not refresh:
-            report["jobs"].append({"kind":kind,"status":"cached","file":str(target)});return
+            try:
+                cached=load_json(target);pack=cached["pack"] if kind=="web" else cached
+                verify(pack,game);atomic(pack_path,pack)
+                report["jobs"].append({"kind":kind,"status":"cached","file":str(target),"pack":str(pack_path)});return
+            except (ValueError,KeyError,TypeError):
+                report["jobs"].append({"kind":kind,"status":"invalid_cache","file":str(target)});return
         try:
-            obj=fn();atomic(target,obj)
-            report["jobs"].append({"kind":kind,"status":"complete","file":str(target)})
+            obj=fn();pack=obj["pack"] if kind=="web" else obj
+            verify(pack,game);atomic(target,obj);atomic(pack_path,pack)
+            report["jobs"].append({"kind":kind,"status":"complete","file":str(target),"pack":str(pack_path)})
         except Exception as exc:
             # Do not log full third-party error payloads (they can contain credentials).
             report["jobs"].append({"kind":kind,"status":"failed","error":type(exc).__name__})
@@ -70,14 +91,8 @@ def batch(game,web=False,video_file=None,authorized=False,refresh=False,max_web=
                 return {"dossier":d,"pack":dossier_candidates(d)}
             execute("web",{"topic":topic},research)
     if video_file:
-        obj=load_json(video_file)
-        if not isinstance(obj,list) or len(obj)>100:raise ValueError("Expected a limited list of approved video URLs")
-        candidates=[]
-        for row in obj:
-            if not isinstance(row,dict) or set(row)!={"url","patch","authorized"} or row["authorized"] is not True:raise ValueError("Video must have explicit authorization")
-            if not isinstance(row["patch"],str) or not row["patch"].strip():raise ValueError("Patch/date required")
-            candidates.append({"url":youtube_url(row["url"]),"patch":row["patch"]})
-        for row in candidates[:max_video]:
+        ordered=sorted(candidates,key=lambda row:not refresh and job_path("video",row).exists())
+        for row in ordered[:max_video]:
             execute("video",row,lambda r=row:video_study(game,r["url"],r["patch"],authorized=True))
     report["finished"]=now()
     atomic(BASE/game/"last_batch.json",report)

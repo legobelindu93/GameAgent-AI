@@ -20,3 +20,30 @@ class FactoryTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             r=offline_advice("nikke","test",root=d)
             self.assertEqual(r["evidence"],[])
+
+    def test_batch_cache_and_standalone_pack(self):
+        from unittest.mock import patch
+        from gameagent.factory import BASE
+        from gameagent.packs import registry
+        calls=[]
+        def fake(game,topic,authorized):
+            calls.append(topic)
+            return {"game":game,"topic":topic,"parts":["Synthetic evidence."],"citations":[{"part":0,"start_index":0,"end_index":9,"url":"https://example.com"}]}
+        with tempfile.TemporaryDirectory() as d:
+            gaps={t:0 for t in registry("nikke")["topics"]}
+            with patch("gameagent.factory.BASE",Path(d)),patch("gameagent.factory.coverage",return_value=gaps),patch("gameagent.factory.web_dossier",side_effect=fake):
+                a=batch("nikke",web=True,authorized=True)
+                b=batch("nikke",web=True,authorized=True)
+                self.assertEqual(len(set(calls)),2)
+                for r in (a,b):
+                    job=r["jobs"][0]
+                    self.assertEqual(job["status"],"complete")
+                    self.assertEqual(verify(load_json(job["pack"]))["records"][0]["review"],"candidate")
+    def test_invalid_video_list_before_remote_call(self):
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as d:
+            p=Path(d)/"invalid.json";p.write_text("[]",encoding="utf-8")
+            p.write_text('[{"url":"https://youtu.be/9hE5-98ZeCg","patch":"test","authorized":false}]',encoding="utf-8")
+            with patch("gameagent.factory.web_dossier") as remote:
+                with self.assertRaises(ValueError):batch("nikke",web=True,video_file=p,authorized=True)
+                remote.assert_not_called()

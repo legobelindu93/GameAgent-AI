@@ -58,5 +58,145 @@
     "patch": "consulted 2026-11-26",
     "locator": "game news",
     "review": "approved"
+  },
+  {
+    "id": "bd2-7",
+    "category": "economy",
+    "title": "Recrutement Olstein et Diana",
+    "claim": "Le guide débutant recommande de garder des parchemins pour Olstein et Diana, notamment pour l'intérêt économique de Dispatch ; vérifier les modalités actuelles.",
+    "source": "https://dotgg.gg/brown-dust-2/beginners-quick-start-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Pub recruitment",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-8",
+    "category": "progression",
+    "title": "Reroll ou progression",
+    "claim": "Le guide privilégie le démarrage effectif du compte et la collecte des récompenses plutôt que de prolonger le reroll.",
+    "source": "https://dotgg.gg/brown-dust-2/beginners-quick-start-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Reroll",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-9",
+    "category": "economy",
+    "title": "Priorités de compétences de terrain",
+    "claim": "Les recommandations historiques donnent une place importante à Dispatch, Alchimie et Craft d'équipement ; comparer les coûts actuels avant d'investir.",
+    "source": "https://dotgg.gg/brown-dust-2/resources-and-currency-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Ability books",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-10",
+    "category": "economy",
+    "title": "Routine collecte de matériaux",
+    "claim": "Les guides historiques décrivent Search puis Absorption pour récupérer des objets de carte ; vérifier la disponibilité et les changements du système.",
+    "source": "https://dotgg.gg/brown-dust-2/beginners-guide-daily-routines-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Daily materials",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-11",
+    "category": "teams",
+    "title": "Pas de composition universelle",
+    "claim": "Adapter la composition au type de dégâts, aux compétences disponibles et au combat visé plutôt que suivre une seule tier list.",
+    "source": "https://dotgg.gg/brown-dust-2/beginners-guide-frequently-asked-questions/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Team composition",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-12",
+    "category": "combat",
+    "title": "Chaînes et coups successifs",
+    "claim": "Le guide de combat indique que les chaînes augmentent les dégâts reçus par la cible de 10 % par chaîne de base ; les effets spéciaux peuvent modifier leur accumulation.",
+    "source": "https://botan14xd.github.io/BD2-Overview/mechanics/battle/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Damage Formula / chains",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-13",
+    "category": "combat",
+    "title": "Ciblage en grille",
+    "claim": "Le ciblage dépend de la colonne et de la position de l'ennemi ; examiner le pattern de chaque compétence avant de prévoir un résultat.",
+    "source": "https://botan14xd.github.io/BD2-Overview/mechanics/battle/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Target selection",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-14",
+    "category": "equipment",
+    "title": "Potentiels des soutiens",
+    "claim": "Pour les buffers, le compendium recommande d'examiner d'abord la réduction du coût SP et du cooldown, puis les améliorations de durée ou d'effet.",
+    "source": "https://botan14xd.github.io/BD2-Overview/progression/potentials/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Buffers",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-15",
+    "category": "equipment",
+    "title": "Priorités d'équipements offensifs",
+    "claim": "Le compendium recommande généralement de commencer par les accessoires offensifs, puis gants et armes ; adapter au personnage et aux stats disponibles.",
+    "source": "https://botan14xd.github.io/BD2-Overview/progression/gear/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Gear priorities",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-16",
+    "category": "equipment",
+    "title": "Statistique fixe",
+    "claim": "Certaines statistiques de base d'un équipement sont déterminées par son nom ; ne pas supposer que tous ses attributs peuvent être relancés.",
+    "source": "https://dotgg.gg/brown-dust-2/gear-guide-basic-mechanics/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Basic mechanics",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-17",
+    "category": "economy",
+    "title": "Cristaux anciens",
+    "claim": "Les anciens guides décrivent les cristaux anciens comme une ressource importante pour le craft UR ; vérifier les récompenses et sources dans la version actuelle.",
+    "source": "https://dotgg.gg/brown-dust-2/last-night-quickstart-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Ancient crystals",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-18",
+    "category": "mechanics",
+    "title": "Fiend Hunter",
+    "claim": "Le compendium décrit une rotation des équipes à sens unique dans Fiend Hunter ; vérifier les règles du boss et de la saison avant de planifier les compositions.",
+    "source": "https://botan14xd.github.io/BD2-Overview/content/fh/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Team switching",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-19",
+    "category": "mechanics",
+    "title": "Données exportées",
+    "claim": "BD2DB documente des exports de collections de costumes, d'équipements, de statistiques et de codes de partage de combat. Notre import normalisé nécessite une conversion vérifiée.",
+    "source": "https://browndust2-db.souseha.com/en/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "BD2DB Exporter",
+    "review": "approved"
+  },
+  {
+    "id": "bd2-20",
+    "category": "equipment",
+    "title": "Calculateur de statistiques",
+    "claim": "Le calculateur BD2DB permet d'évaluer des statistiques finales à partir de costumes, équipement et bonus ; ne pas confondre statistiques de base et finales.",
+    "source": "https://browndust2-db.souseha.com/en/stat-calculator",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Stat calculator",
+    "review": "approved"
   }
 ]

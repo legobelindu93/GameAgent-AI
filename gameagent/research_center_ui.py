@@ -11,7 +11,7 @@ from .account_import import import_account
 from .cloud_study import video_study,web_dossier
 from .pack_review import benchmark
 from .patch_watch import check
-from .factory import batch,offline_advice,build_bundle
+from .factory import batch,offline_advice,build_bundle,bootstrap,dossier_candidates
 from .pack_review import review
 import webbrowser
 
@@ -96,7 +96,9 @@ def main():
         target=filedialog.asksaveasfilename(defaultextension=".json")
         if target and messagebox.askyesno("Recherche distante","Autoriser une recherche API (frais possibles) ?"):
             def run():
-                result=web_dossier(g,topic,True);atomic(target,result);return result
+                result=web_dossier(g,topic,True);atomic(target,result)
+                candidate=Path(target).with_name(Path(target).stem+".pack.json")
+                atomic(candidate,dossier_candidates(result));return dict(result,candidate_pack=str(candidate))
             job(run)
     def open_source():
         from .packs import https_url
@@ -131,7 +133,9 @@ def main():
                     pack=review(obj,ids.split(),version);atomic(target,pack);return {"output":target,"approved":sum(r["review"]=="approved" for r in pack["records"])}
                 job(run)
         except Exception as exc:show({"error":str(exc)})
-    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account),("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Vérifier annonces",patch_check),("Benchmark local",bench),("Ouvrir une source",open_source),("Conseil hors ligne",offline),("Recherche autonome ciblée",batch_web),("Exporter les six packs",bundle),("Valider un pack",review_pack)]):
+    def all_seeds():
+        if messagebox.askyesno("Packs","Installer les six packs initiaux fournis avec GameAgent ?"):job(bootstrap)
+    for i,(name,fn) in enumerate([("Sources",sources),("Rechercher",search),("Cycle de recherche",cycle),("Couverture indicative",gaps),("Installer pack initial",seed),("Importer pack",pack),("Importer notes / sous-titres",notes),("Compiler via API",compile_remote),("Importer compte",account),("Étudier vidéo YouTube",video_url),("Recherche IA web",web_study),("Vérifier annonces",patch_check),("Benchmark local",bench),("Ouvrir une source",open_source),("Conseil hors ligne",offline),("Recherche autonome ciblée",batch_web),("Exporter les six packs",bundle),("Valider un pack",review_pack),("Installer les six packs",all_seeds)]):
         ttk.Button(bar,text=name,command=fn).grid(row=i//3,column=i%3,sticky="ew",padx=4,pady=4)
     for i in range(3):bar.columnconfigure(i,weight=1)
     out=console(panel)

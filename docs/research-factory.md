@@ -25,5 +25,13 @@ No additional Python packages or GPU are required for pack import or metadata se
 - offline QUESTION retrieves local evidence and a summary of imported account data, without a model or API. It is not a game-playing policy or optimizer.
 - batch --web --authorized selects the least-covered topic, runs a single cited remote research request by default, and caches the result under data/research/GAME/jobs. Each job contains a dossier and candidate pack. --max-web permits up to 3; --refresh explicitly reruns cached requests.
 - batch --videos FILE --authorized accepts a JSON array of entries with url, patch, authorized:true for videos you have permission to process. One video by default, max 2. No discovered video is analyzed without explicit permission.
-- dossier-pack FILE OUTPUT converts cited paragraphs to candidate records; verify citations against original pages. For a batch result, extract its nested pack object and use review after checking sources.
+- dossier-pack FILE OUTPUT converts cited paragraphs to candidate records; verify citations against original pages. Batch jobs also write standalone .pack.json files ready for review.
 - No recurring tasks are configured or run automatically. The CLI can be invoked when desired; no unattended spending by default.
+
+## Lightweight installation
+```powershell
+uv sync
+uv run python -m gameagent.research_center brown_dust_2 bootstrap
+uv run python -m gameagent.research_center_ui
+```
+For remote video: uv sync --extra cloud-study. For launcher capture/hosting, install --extra vision --extra ocr --extra native-ui as needed. Avoid --all-extras unless you also want synthetic RL training dependencies. Bootstrap is offline and installs all six starter packs. The BD2 pack includes 20 reviewed notes; the five other packs include four each. No credentials in the repository.

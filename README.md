@@ -130,13 +130,13 @@ Training and navigation environments are synthetic. No trained game-specific mod
 
 ```powershell
 uv run python -m gameagent.research_center_ui
-uv run python -m gameagent.research_center brown_dust_2 seed
+uv run python -m gameagent.research_center brown_dust_2 bootstrap
 uv run python -m gameagent.research_center brown_dust_2 cycle
 uv run python -m gameagent.research_center brown_dust_2 offline "progression F2P"
 uv run python -m gameagent.research_center brown_dust_2 bundle data/packs
 ```
 
-Six source registries, reviewed starter seeds for all six games, offline SHA-256 pack validation, candidate/approved separation, authorized transcript imports, optional YouTube/Brave discovery optional remote document compilation, cited web dossiers and public YouTube video study through Gemini. No GPU required for pack import, evidence retrieval, discovery or remote analysis. The bounded batch workflow prioritizes knowledge gaps and caches candidate results. Cloud calls require explicit opt-in and separate keys. External providers need credentials and may incur costs; no automatic video downloading or model training. See [research factory documentation](docs/research-factory.md).
+Six source registries, 40 curated starter notes across six games, offline SHA-256 pack validation, candidate/approved separation, authorized transcript imports, optional YouTube/Brave discovery optional remote document compilation, cited web dossiers and public YouTube video study through Gemini. No GPU required for pack import, evidence retrieval, discovery or remote analysis. The bounded batch workflow prioritizes knowledge gaps and caches candidate results. Cloud calls require explicit opt-in and separate keys. For a lightweight setup use `uv sync` rather than `--all-extras`; add `--extra cloud-study` only for remote video analysis. External providers need credentials and may incur costs; no automatic video downloading or model training. See [research factory documentation](docs/research-factory.md).
 
 ## Roadmap
 
