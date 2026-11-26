@@ -17,9 +17,10 @@ class Console(Workbench):
         super().__init__("Console des jeux","Installation · configuration · interface originale · diagnostic",game)
         self.processes={};self.assets=[];self.last_game=game
         self.tabs=QTabWidget();self.controls.addWidget(self.tabs)
-        self.home,self.install,self.embed,self.diagnostics=[QVBoxLayout(QWidget()) for _ in range(4)]
-        for title,layout in zip(("Application","Installation","Interface native","Diagnostic"),(self.home,self.install,self.embed,self.diagnostics)):
-            self.tabs.addTab(layout.parentWidget(),title)
+        pages=[QWidget(self.tabs) for _ in range(4)]
+        self.home,self.install,self.embed,self.diagnostics=[QVBoxLayout(page) for page in pages]
+        for title,page in zip(("Application","Installation","Interface native","Diagnostic"),pages):
+            self.tabs.addTab(page,title)
         self.info=label("","section");self.home.addWidget(self.info)
         self.path=label("","subtitle");self.home.addWidget(self.path)
         self.start_button=button("Ouvrir l’application",self.start,"primary");self.home.addWidget(self.start_button)
