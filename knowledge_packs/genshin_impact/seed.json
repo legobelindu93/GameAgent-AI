@@ -1,0 +1,42 @@
+[
+  {
+    "id": "genshin_impact-1",
+    "category": "equipment",
+    "title": "Artefacts AR45",
+    "claim": "Le guide KQM recommande de reporter le farming intensif des domaines d'artefacts jusqu'au rang d'aventure 45, lorsque le niveau supérieur garantit des artefacts 5 étoiles.",
+    "source": "https://keqingmains.com/misc/newbie-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Artifact domains",
+    "review": "approved"
+  },
+  {
+    "id": "genshin_impact-2",
+    "category": "combat",
+    "title": "Réactions élémentaires",
+    "claim": "Identifier le personnage qui applique l'élément déclencheur et sa maîtrise élémentaire ; les formules dépendent du type de réaction.",
+    "source": "https://keqingmains.com/misc/newbie-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Elemental reactions",
+    "review": "approved"
+  },
+  {
+    "id": "genshin_impact-3",
+    "category": "progression",
+    "title": "Progression débutant",
+    "claim": "Une composition endgame complète n'est pas indispensable pour les premières quêtes et l'exploration.",
+    "source": "https://keqingmains.com/misc/newbie-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Early teams",
+    "review": "approved"
+  },
+  {
+    "id": "genshin_impact-4",
+    "category": "events",
+    "title": "Types de contenu",
+    "claim": "Distinguer les quêtes permanentes, l'exploration, les événements temporaires et les défis de combat lors de la planification.",
+    "source": "https://keqingmains.com/misc/newbie-guide/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Content types",
+    "review": "approved"
+  }
+]

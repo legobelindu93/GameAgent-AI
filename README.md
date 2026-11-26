@@ -1,6 +1,6 @@
 # GameAgent AI
 
-![Version](https://img.shields.io/badge/version-0.11.0-7658e8)
+![Version](https://img.shields.io/badge/version-0.12.0-7658e8)
 ![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB)
 ![Windows](https://img.shields.io/badge/platform-Windows-0078D4)
 ![Status](https://img.shields.io/badge/status-research%20prototype-orange)
@@ -125,6 +125,18 @@ uv run python -m gameagent.lab train-navigation --steps 10000
 ```
 
 Training and navigation environments are synthetic. No trained game-specific model is included. Test commands are supplied for local validation; passing results are not asserted.
+
+## Research & Knowledge Factory (v0.12.0)
+
+```powershell
+uv run python -m gameagent.research_center_ui
+uv run python -m gameagent.research_center brown_dust_2 bootstrap
+uv run python -m gameagent.research_center brown_dust_2 cycle
+uv run python -m gameagent.research_center brown_dust_2 offline "progression F2P"
+uv run python -m gameagent.research_center brown_dust_2 bundle data/packs
+```
+
+Six source registries, 40 curated starter notes across six games, offline SHA-256 pack validation, candidate/approved separation, authorized transcript imports, optional YouTube/Brave discovery optional remote document compilation, cited web dossiers and public YouTube video study through Gemini. No GPU required for pack import, evidence retrieval, discovery or remote analysis. The bounded batch workflow prioritizes knowledge gaps and caches candidate results. Cloud calls require explicit opt-in and separate keys. For a lightweight setup use `uv sync` rather than `--all-extras`; add `--extra cloud-study` only for remote video analysis. External providers need credentials and may incur costs; no automatic video downloading or model training. See [research factory documentation](docs/research-factory.md).
 
 ## Roadmap
 

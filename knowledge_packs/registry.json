@@ -1,0 +1,154 @@
+{
+  "brown_dust_2": {
+    "name": "Brown Dust 2",
+    "topics": [
+      "beginner F2P progression",
+      "character builds and teams",
+      "resource economy and gear",
+      "combat mechanics and endgame",
+      "latest patch events"
+    ],
+    "sources": [
+      {
+        "url": "https://www.browndust2.com/en-us/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://dotgg.gg/brown-dust-2/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://browndust2-db.souseha.com/en/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://botan14xd.github.io/BD2-Overview/",
+        "access": "discovery_only",
+        "license": "review_required"
+      }
+    ]
+  },
+  "nikke": {
+    "name": "Goddess of Victory NIKKE",
+    "topics": [
+      "beginner F2P progression",
+      "character builds and teams",
+      "resource economy and gear",
+      "combat mechanics and endgame",
+      "latest patch events"
+    ],
+    "sources": [
+      {
+        "url": "https://nikke-en.com/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://www.prydwen.gg/nikke/guides",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://nikke.gg/",
+        "access": "discovery_only",
+        "license": "review_required"
+      }
+    ]
+  },
+  "genshin_impact": {
+    "name": "Genshin Impact",
+    "topics": [
+      "beginner F2P progression",
+      "character builds and teams",
+      "resource economy and gear",
+      "combat mechanics and endgame",
+      "latest patch events"
+    ],
+    "sources": [
+      {
+        "url": "https://genshin.hoyoverse.com/en/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://keqingmains.com/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://library.keqingmains.com/",
+        "access": "discovery_only",
+        "license": "review_required"
+      }
+    ]
+  },
+  "honkai_star_rail": {
+    "name": "Honkai Star Rail",
+    "topics": [
+      "beginner F2P progression",
+      "character builds and teams",
+      "resource economy and gear",
+      "combat mechanics and endgame",
+      "latest patch events"
+    ],
+    "sources": [
+      {
+        "url": "https://hsr.hoyoverse.com/en-us/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://www.prydwen.gg/star-rail/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://hsr.keqingmains.com/",
+        "access": "discovery_only",
+        "license": "review_required"
+      }
+    ]
+  },
+  "wuthering_waves": {
+    "name": "Wuthering Waves",
+    "topics": [
+      "beginner F2P progression",
+      "character builds and teams",
+      "resource economy and gear",
+      "combat mechanics and endgame",
+      "latest patch events"
+    ],
+    "sources": [
+      {
+        "url": "https://wutheringwaves.kurogames.com/en/",
+        "access": "discovery_only",
+        "license": "review_required"
+      },
+      {
+        "url": "https://www.prydwen.gg/wuthering-waves/",
+        "access": "discovery_only",
+        "license": "review_required"
+      }
+    ]
+  },
+  "neverness_to_everness": {
+    "name": "Neverness to Everness",
+    "topics": [
+      "beginner F2P progression",
+      "character builds and teams",
+      "resource economy and gear",
+      "combat mechanics and endgame",
+      "latest patch events"
+    ],
+    "sources": [
+      {
+        "url": "https://www.prydwen.gg/neverness-to-everness/guides",
+        "access": "discovery_only",
+        "license": "review_required"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "honkai_star_rail-1",
+    "category": "progression",
+    "title": "Déblocages par histoire",
+    "claim": "Avancer dans l'histoire pour ouvrir les systèmes comme les missions quotidiennes et les ressources de progression.",
+    "source": "https://www.prydwen.gg/star-rail/guides/early-progression/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Early progression",
+    "review": "approved"
+  },
+  {
+    "id": "honkai_star_rail-2",
+    "category": "economy",
+    "title": "Trailblaze Power",
+    "claim": "La Trailblaze Power sert de ressource d'endurance ; vérifier les coûts actuels des activités.",
+    "source": "https://www.prydwen.gg/star-rail/guides/game-systems",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Trailblaze Power",
+    "review": "approved"
+  },
+  {
+    "id": "honkai_star_rail-3",
+    "category": "combat",
+    "title": "Rupture de faiblesse",
+    "claim": "Réduire la robustesse d'un ennemi à zéro déclenche une rupture de faiblesse ; adapter les éléments aux vulnérabilités.",
+    "source": "https://www.prydwen.gg/star-rail/guides/elements",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Weakness Break",
+    "review": "approved"
+  },
+  {
+    "id": "honkai_star_rail-4",
+    "category": "equipment",
+    "title": "Ascension",
+    "claim": "Le niveau de compte limite les ascensions disponibles ; vérifier ce plafond avant de planifier les matériaux.",
+    "source": "https://www.prydwen.gg/star-rail/guides/character-progression",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Ascension",
+    "review": "approved"
+  }
+]

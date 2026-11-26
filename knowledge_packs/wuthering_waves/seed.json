@@ -1,0 +1,42 @@
+[
+  {
+    "id": "wuthering_waves-1",
+    "category": "economy",
+    "title": "Waveplate",
+    "claim": "La Waveplate est la ressource d'endurance ; la répartir entre les activités qui répondent au blocage de progression.",
+    "source": "https://www.prydwen.gg/wuthering-waves/guides/game-systems",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Waveplate",
+    "review": "approved"
+  },
+  {
+    "id": "wuthering_waves-2",
+    "category": "progression",
+    "title": "Drifting Inscription",
+    "claim": "Les missions Drifting Inscription servent de guide pour la progression initiale.",
+    "source": "https://www.prydwen.gg/wuthering-waves/guides/beginner-guide",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Beginner missions",
+    "review": "approved"
+  },
+  {
+    "id": "wuthering_waves-3",
+    "category": "equipment",
+    "title": "Echoes",
+    "claim": "Comparer les ensembles et statistiques d'Echoes avant de consacrer des ressources à leurs améliorations.",
+    "source": "https://www.prydwen.gg/wuthering-waves/guides/echoes-explained",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Echo System",
+    "review": "approved"
+  },
+  {
+    "id": "wuthering_waves-4",
+    "category": "progression",
+    "title": "Data Bank",
+    "claim": "Le suivi des Echoes dans l'Echo Gallery aide à identifier ceux qui manquent pour la progression de la Data Bank.",
+    "source": "https://www.prydwen.gg/wuthering-waves/guides/tips-and-tricks/",
+    "patch": "consulted 2026-11-26; exact patch unknown",
+    "locator": "Leveling and Waveplate usage",
+    "review": "approved"
+  }
+]
